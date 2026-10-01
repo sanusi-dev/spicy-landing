@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+  Documentation placeholder.
+  The real docs (installation, setup, POS flows, back office, reports...) get
+  built here as plain HTML pages that share assets/css/site.css.
+-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docs - Spicy</title>
+  <meta name="description" content="Spicy documentation. Installation, setup, POS workflows and back office guides.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="rgb(250,250,250)">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="rgb(17,17,17)">
+  <link rel="icon" href="../assets/logo/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/logo/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <noscript><style>.ury-reveal { opacity: 1; transform: none; }</style></noscript>
+  <!-- Theme: light by default; add data-follow-system-theme to <html> to follow the OS. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      if (!window.matchMedia || !root.hasAttribute('data-follow-system-theme')) return;
+      var media = window.matchMedia('(prefers-color-scheme: dark)');
+      var apply = function () { root.classList.toggle('dark', media.matches); };
+      apply();
+      if (media.addEventListener) media.addEventListener('change', apply);
+      else if (media.addListener) media.addListener(apply);
+    })();
+  </script>
+</head>
+<body>
+
+  <header class="ury-nav" data-scrolled="false">
+    <div class="ury-shell ury-nav-inner">
+      <a class="ury-logo" href="../index.html" aria-label="Spicy home">
+        <img class="logo-light" src="../assets/img/logo.svg" alt="Spicy" width="152" height="32">
+        <img class="logo-inverse" src="../assets/img/logo-inverse.svg" alt="" width="152" height="32" aria-hidden="true">
+      </a>
+      <nav class="ury-nav-links">
+        <a class="ury-nav-link" href="../index.html">Home</a>
+        <a class="ury-nav-link ury-nav-link--section" href="../index.html#platform">Platform</a>
+        <a class="ury-nav-icon" href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer" aria-label="Spicy on GitHub">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+      </nav>
+      <button type="button" class="ury-nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="ury-nav-menu" id="nav-menu" hidden>
+        <a class="ury-nav-menu-link" href="../index.html">Home</a>
+        <a class="ury-nav-menu-link" href="../index.html#platform">Platform</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="ury-page">
+      <section class="ury-hero">
+        <div class="ury-hero-glow ury-hero-glow--a"></div>
+        <div class="ury-shell ury-hero-inner">
+          <div class="ury-reveal" data-visible="false">
+            <div class="ury-eyebrow">Documentation</div>
+            <h1 class="ury-h1" style="max-width:560px">Spicy <em>docs</em> are on the way.</h1>
+            <p class="ury-lede">The landing page comes first. This section will hold the installation guide, setup walkthrough, POS workflows, back office guides and reporting reference.</p>
+            <div class="ury-btn-row">
+              <a class="ury-btn ury-btn--primary" href="../index.html">Back to the landing page</a>
+              <a class="ury-btn ury-btn--secondary" href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer">Browse the source</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ury-section ury-section--alt">
+        <div class="ury-shell">
+          <div class="ury-reveal ury-center ury-section-head" data-visible="false">
+            <div class="ury-eyebrow ury-eyebrow--center">Planned sections</div>
+            <h2 class="ury-h2">What will live here</h2>
+          </div>
+          <div class="ury-reveal ury-grid-4" data-visible="false" style="transition-delay:120ms">
+            <div class="ury-card">
+              <div class="ury-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke-linecap="round"/></svg>
+              </div>
+              <h3 class="ury-h3">Getting started</h3>
+              <p>Requirements, installation and the first run.</p>
+            </div>
+            <div class="ury-card">
+              <div class="ury-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              </div>
+              <h3 class="ury-h3">Setup</h3>
+              <p>Restaurant settings, menu, staff roles and payment modes.</p>
+            </div>
+            <div class="ury-card">
+              <div class="ury-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5Z" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="ury-h3">Daily operations</h3>
+              <p>Taking orders, handling payments, shifts and stock.</p>
+            </div>
+            <div class="ury-card">
+              <div class="ury-card-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z" stroke-linejoin="round"/><path d="M19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16Z" stroke-linejoin="round"/></svg>
+              </div>
+              <h3 class="ury-h3">Reference</h3>
+              <p>Reports, recipes, waste reconciliation and troubleshooting.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="ury-footer">
+    <div class="ury-shell">
+      <div class="ury-footer-base" style="border-top:0;padding-top:0">
+        <span>Copyright © <span data-year>2026</span> Spicy. All rights reserved.</span>
+        <span><a href="../index.html">Back to homepage</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!--
+  Spicy landing page, v2.
+  Same copy and partner form as the previous page. Layout and styling are
+  Spicy's own: a service ticket, station list, and receipt — not the ury.app
+  section rhythm. Static HTML, CSS, and JS. No build step.
+-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Spicy - Open Source Restaurant POS</title>
+  <meta name="description" content="Spicy is a lightweight, web-based point of sale for restaurant order management. Cashier operated, runs on your local network, and is open source.">
+
+  <meta property="og:title" content="Spicy - Open Source Restaurant POS">
+  <meta property="og:description" content="A lightweight, cashier operated point of sale for restaurant order management. Dine-in, takeaway and delivery in one simple system.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spicy - Open Source Restaurant POS">
+  <meta name="twitter:description" content="A lightweight, cashier operated point of sale for restaurant order management.">
+  <meta name="twitter:image" content="assets/img/og-image.png">
+
+  <meta name="theme-color" content="#f3f6f3">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('spicy-theme');
+        var theme = saved === 'dark' || saved === 'light' ? saved
+          : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="icon" href="assets/logo/favicons/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/logo/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="assets/logo/favicons/site.webmanifest">
+
+  <link rel="stylesheet" href="assets/css/landing.css">
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .panel[hidden] { display: grid !important; margin-top: 2rem; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-nav" data-scrolled="false">
+    <div class="wrap nav-inner">
+      <a class="logo" href="index.html" aria-label="Spicy home">
+        <img class="logo-for-light" src="assets/img/logo.svg" alt="Spicy" width="152" height="32">
+        <img class="logo-for-dark" src="assets/img/logo-inverse.svg" alt="" width="152" height="32">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="#platform">Platform</a>
+        <a class="nav-link" href="#audience">For whom</a>
+        <a class="nav-link" href="docs/">Docs</a>
+        <a class="nav-link" href="https://akorede.dev" target="_blank" rel="noreferrer">Get in Touch</a>
+        <a class="nav-icon" href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer" aria-label="Spicy on GitHub">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <button type="button" class="btn btn--chili" data-waitlist-open="navbar">Partner with Us</button>
+      </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div class="nav-menu" id="nav-menu" hidden>
+      <div class="nav-menu-inner">
+        <a href="#platform">Platform</a>
+        <a href="#audience">For whom</a>
+        <a href="docs/">Docs</a>
+        <a href="https://akorede.dev" target="_blank" rel="noreferrer">Get in Touch</a>
+        <a href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer">GitHub</a>
+        <button type="button" class="btn btn--chili" data-waitlist-open="nav-menu">Partner with Us</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Everything your restaurant needs to run better</p>
+          <h1>Run your<br>restaurant<br>with <span class="stamp">control.</span></h1>
+          <p class="lede">Ordering, inventory, kitchen operations, payments, reporting, and full accounting &mdash; built for restaurants that need more than just a POS.</p>
+          <div class="actions">
+            <button type="button" class="btn btn--chili" data-waitlist-open="hero">Partner with Us</button>
+            <a class="btn btn--line" href="docs/">Read the docs</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <figure class="hero-shot">
+            <figcaption><span>Order screen</span><span>This shift</span></figcaption>
+            <img src="assets/img/screens/pos-main.webp" alt="Spicy POS order screen showing the menu catalog, categories and a live draft order" width="1875" height="915">
+          </figure>
+          <ul class="proof">
+            <li>Deep operational reporting</li>
+            <li>Local or Cloud. Your Choice.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap why">
+        <div class="why-copy reveal" data-visible="false">
+          <p class="kicker">Why Spicy</p>
+          <h2>The perfect POS for running your restaurant at ease</h2>
+        </div>
+        <div class="lanes reveal" data-visible="false">
+          <div class="lane">
+            <span class="lane-key">POS</span>
+            <p>Restaurant POS for orders, payments, and shift workflows</p>
+          </div>
+          <div class="lane">
+            <span class="lane-key">Accounts</span>
+            <p>Full accounting with financial records, and business reporting</p>
+          </div>
+          <div class="lane">
+            <span class="lane-key">Reporting</span>
+            <p>Reporting &amp; insights to understand sales, profitability, and performance</p>
+          </div>
+          <div class="lane">
+            <span class="lane-key">Back office</span>
+            <p>Back-office for inventory, procurement, and restaurant configs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="platform">
+      <div class="wrap">
+        <div class="intro intro--solo reveal" data-visible="false">
+          <div>
+            <p class="kicker">Platform</p>
+            <h2>One system. Every layer of the restaurant.</h2>
+          </div>
+        </div>
+
+        <div class="platform-body reveal" data-visible="false">
+          <div class="stations" role="tablist" aria-label="Platform areas" aria-orientation="vertical">
+            <button class="station" role="tab" type="button" id="tab-pos" aria-selected="true" aria-controls="panel-pos">POS &amp; Orders</button>
+            <button class="station" role="tab" type="button" id="tab-kitchen" aria-selected="false" aria-controls="panel-kitchen" tabindex="-1">Kitchen &amp; Bar</button>
+            <button class="station" role="tab" type="button" id="tab-stock" aria-selected="false" aria-controls="panel-stock" tabindex="-1">Stock &amp; Recipes</button>
+            <button class="station" role="tab" type="button" id="tab-shifts" aria-selected="false" aria-controls="panel-shifts" tabindex="-1">Shifts &amp; Cash</button>
+            <button class="station" role="tab" type="button" id="tab-reporting" aria-selected="false" aria-controls="panel-reporting" tabindex="-1">Reporting</button>
+            <button class="station" role="tab" type="button" id="tab-accounting" aria-selected="false" aria-controls="panel-accounting" tabindex="-1">Accounting</button>
+          </div>
+
+          <div class="stage">
+            <div class="panel" role="tabpanel" id="panel-pos" aria-labelledby="tab-pos">
+              <div class="panel-copy">
+                <h3>Built for service, not just the bill</h3>
+                <p>Dine-in and take-away, guests on a single order, and payment across cash and transfer. Every order has an owner, a history, and a clean path when something comes back.</p>
+                <ul class="tags">
+                  <li class="tag">Dine-in</li><li class="tag">Take-away</li><li class="tag">Guest groups</li><li class="tag">Menu search</li><li class="tag">Specials</li><li class="tag">Sizes and add-ons</li><li class="tag">Item notes</li><li class="tag">Split payment</li><li class="tag">Cash change</li><li class="tag">Payment references</li><li class="tag">Order history</li><li class="tag">Returns</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>Counter</span><span>This shift</span></div>
+                <div class="slip"><b>◉</b><div><strong>Draft · Dine-in · 3 guests</strong><span>Jollof Rice × 2 · Grilled Chicken</span></div></div>
+                <div class="slip"><b>◎</b><div><strong>Sent · Take-away #47</strong><span>Kitchen and bar notified</span></div></div>
+                <div class="slip"><b>₦</b><div><strong>Settled · Split payment</strong><span>Cash ₦6,000 · Transfer ₦4,500</span></div></div>
+                <div class="slip"><b>↩</b><div><strong>Return · Manager</strong><span>Drink restored · refund on the shift</span></div></div>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-kitchen" aria-labelledby="tab-kitchen" hidden>
+              <div class="panel-copy">
+                <h3>Kitchen and bar, in their own lanes</h3>
+                <p>Food and drinks leave on separate tickets, grouped the way the order was taken. Cancellations stay visible, and a paid order does not skip the station.</p>
+                <ul class="tags">
+                  <li class="tag">Kitchen tickets</li><li class="tag">Bar tickets</li><li class="tag">Grouped by customer</li><li class="tag">Item notes</li><li class="tag">Cancellation tickets</li><li class="tag">Print status</li><li class="tag">Reprint</li><li class="tag">Take-away control</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>Tickets</span><span>This service</span></div>
+                <div class="slip"><b>Food</b><div><strong>New · Dine-in</strong><span>Jollof Rice × 2 · Grilled Chicken</span></div></div>
+                <div class="slip"><b>Bar</b><div><strong>New · Dine-in</strong><span>Chapman × 2 · Malt</span></div></div>
+                <div class="slip"><b>Stop</b><div><strong>Cancelled · Take-away #47</strong><span>Suya × 1</span></div></div>
+                <div class="slip"><b>Bar</b><div><strong>Print pending</strong><span>Ready to send again</span></div></div>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-stock" aria-labelledby="tab-stock" hidden>
+              <div class="panel-copy">
+                <h3>Stock with a value, not just a count</h3>
+                <p>Store, kitchen, and bar in one picture. Receipts, transfers, kitchen use, and waste carry their cost, and recipes show what the food should have used.</p>
+                <ul class="tags">
+                  <li class="tag">Store, kitchen, bar</li><li class="tag">Receipts</li><li class="tag">Transfers</li><li class="tag">Purchase units</li><li class="tag">Opening stock</li><li class="tag">Counts</li><li class="tag">Waste</li><li class="tag">Recipes</li><li class="tag">Food usage</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>Stock</span><span>At cost</span></div>
+                <table class="ledger">
+                  <thead><tr><th>Movement</th><th>Qty</th><th>Value</th></tr></thead>
+                  <tbody>
+                    <tr><td>Received</td><td>+10 bags</td><td>₦ 268,000</td></tr>
+                    <tr><td>To the kitchen</td><td>−2 bags</td><td>−₦ 53,600</td></tr>
+                    <tr><td>On hand</td><td>8 bags</td><td>₦ 214,400</td></tr>
+                  </tbody>
+                </table>
+                <p class="docket-note">Valued at the current average cost</p>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-shifts" aria-labelledby="tab-shifts" hidden>
+              <div class="panel-copy">
+                <h3>A drawer that closes with the shift</h3>
+                <p>One shift open at a time. Counted cash against what the system expected, with refunds and cash taken out already in the figure. The difference posts with the close.</p>
+                <ul class="tags">
+                  <li class="tag">Opening float</li><li class="tag">Single open shift</li><li class="tag">Counted vs expected</li><li class="tag">Cash taken out</li><li class="tag">Refunds</li><li class="tag">Variance posted</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>Shift close</span><span>Counted</span></div>
+                <table class="ledger">
+                  <thead><tr><th>Mode</th><th>Expected</th><th>Counted</th><th>Diff</th></tr></thead>
+                  <tbody>
+                    <tr><td>Cash</td><td>₦ 84,500</td><td>₦ 84,500</td><td class="is-yes">₦ 0</td></tr>
+                    <tr><td>Transfer</td><td>₦ 132,000</td><td>₦ 130,000</td><td class="is-no">−₦ 2,000</td></tr>
+                    <tr><td>Total</td><td>₦ 216,500</td><td>₦ 214,500</td><td class="is-no">−₦ 2,000</td></tr>
+                  </tbody>
+                </table>
+                <p class="docket-note">Refunds and cash-outs already included</p>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-reporting" aria-labelledby="tab-reporting" hidden>
+              <div class="panel-copy">
+                <h3>Numbers worth acting on</h3>
+                <p>Sales by day, item, cashier, and time of day. A daily profit and loss with food and drinks in their own columns: food cost from the kitchen, drink cost from what sold.</p>
+                <ul class="tags">
+                  <li class="tag">Today</li><li class="tag">Day wise</li><li class="tag">Month wise</li><li class="tag">Item wise</li><li class="tag">By cashier</li><li class="tag">Time of day</li><li class="tag">Cancelled orders</li><li class="tag">Average bill</li><li class="tag">Daily P&amp;L</li><li class="tag">Food cost</li><li class="tag">CSV export</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>Daily P&amp;L</span><span>Food, drinks, total</span></div>
+                <table class="ledger">
+                  <thead><tr><th>Line</th><th>Food</th><th>Drinks</th><th>Total</th></tr></thead>
+                  <tbody>
+                    <tr><td>Sales</td><td>₦ 96,000</td><td>₦ 41,500</td><td>₦ 137,500</td></tr>
+                    <tr><td>Cost</td><td>₦ 33,400</td><td>₦ 12,900</td><td>₦ 46,300</td></tr>
+                    <tr><td>Gross profit</td><td>₦ 62,600</td><td>₦ 28,600</td><td>₦ 91,200</td></tr>
+                    <tr><td>Net profit</td><td>—</td><td>—</td><td>₦ 54,800</td></tr>
+                  </tbody>
+                </table>
+                <p class="docket-note">Food from the kitchen · drinks from sales</p>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-accounting" aria-labelledby="tab-accounting" hidden>
+              <div class="panel-copy">
+                <h3>The books, tied to the till</h3>
+                <p>Income split between food and drinks, each payment type on its own account, drink cost when the sale lands, and supplier bills from receipt through to payment.</p>
+                <ul class="tags">
+                  <li class="tag">Chart of accounts</li><li class="tag">General ledger</li><li class="tag">Journals</li><li class="tag">Opening balances</li><li class="tag">Cash variance</li><li class="tag">Trial balance</li><li class="tag">Suppliers</li><li class="tag">Supplier bills</li><li class="tag">Payments</li>
+                </ul>
+              </div>
+              <div class="docket">
+                <div class="docket-top"><span>The books</span><span>Tied to the till</span></div>
+                <p class="book-line book-line--hot">Sales at the counter</p>
+                <p class="book-via">recorded in</p>
+                <p class="book-line">The accounts</p>
+                <ul class="accounts">
+                  <li>Food income</li>
+                  <li>Drink income</li>
+                  <li>Drink cost</li>
+                  <li>Payments</li>
+                  <li>Suppliers</li>
+                  <li>Journals</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="audience">
+      <div class="wrap">
+        <div class="intro intro--solo reveal" data-visible="false">
+          <div>
+            <p class="kicker">For whom</p>
+            <h2>For operators who want more than a till</h2>
+          </div>
+        </div>
+        <div class="roles reveal" data-visible="false">
+          <article class="role role--ink">
+            <h3>Owners</h3>
+            <p>See the day clearly. Sales, cost, and profit, with food and drinks apart, without rebuilding it in a spreadsheet.</p>
+          </article>
+          <article class="role">
+            <h3>Managers</h3>
+            <p>Service, stock, and the drawer in one place. Closes, counts, waste, and refunds carry a name and a time.</p>
+          </article>
+          <article class="role">
+            <h3>Cashiers</h3>
+            <p>The order, the guests, and the payment on one screen. Split tender and change, without leaving the sale.</p>
+          </article>
+          <article class="role role--ink">
+            <h3>Store and accounts</h3>
+            <p>Purchasing, stock value, and what you owe suppliers, on the same records as the till.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <div class="intro intro--actions reveal" data-visible="false">
+          <div>
+            <p class="kicker">Getting started</p>
+            <h2>Get started without starting from scratch</h2>
+          </div>
+          <div class="actions">
+            <a class="btn btn--line" href="docs/">Installation guide</a>
+            <a class="btn btn--line" href="docs/">Setup walkthrough</a>
+          </div>
+        </div>
+        <ol class="steps reveal" data-visible="false">
+          <li class="step">
+            <span class="step-num">1</span>
+            <h3>Open the counter</h3>
+            <p>Menu, payments, and the kitchen and bar. The floor can sell.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <h3>Bring stock into the picture</h3>
+            <p>Items, recipes, and the store, kitchen, and bar. Cost has somewhere to live.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <h3>Close a real shift</h3>
+            <p>Opening cash, the day's sales, and a drawer counted against the system.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">4</span>
+            <h3>Read the day, and keep the books</h3>
+            <p>Daily profit for food and drinks, and accounts that already match the till.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="close">
+      <div class="wrap close-grid">
+        <div class="close-oss">
+          <p class="oss-lead">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Free and open source.</strong> Spicy runs on your own network, on the cashier computer or a server you control. Your data, your code, your control.</span>
+          </p>
+          <a class="btn btn--line" href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="close-cta">
+          <p class="kicker">Ready to start</p>
+          <h2>A clearer way to run the restaurant</h2>
+          <p>Spicy gives the counter, the kitchen and the bar, the stock, and the books one connected system.</p>
+          <button type="button" class="btn btn--chili" data-waitlist-open="cta">Partner with Us</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="Spicy home">
+            <img class="logo-for-light" src="assets/img/logo.svg" alt="Spicy" width="120" height="28">
+            <img class="logo-for-dark" src="assets/img/logo-inverse.svg" alt="" width="120" height="28">
+          </a>
+          <p>Open source restaurant software. The counter, the kitchen and the bar, the stock, and the books, in one system you run yourself.</p>
+        </div>
+        <div>
+          <h2>Platform</h2>
+          <ul>
+            <li><a href="docs/">Core</a></li>
+            <li><a href="docs/">POS</a></li>
+            <li><a href="docs/">Backoffice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Resources</h2>
+          <ul>
+            <li><a href="docs/">Documentation</a></li>
+            <li><a href="docs/">Installation</a></li>
+            <li><a href="docs/">Setup</a></li>
+            <li><a href="https://github.com/sanusi-dev/spicy" target="_blank" rel="noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>Copyright © <span data-year>2026</span> Spicy. All rights reserved.</span>
+        <span>Developed by <a href="https://akorede.dev" target="_blank" rel="noreferrer">Akorede</a>.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="waitlist-modal" hidden>
+    <div class="ticket" role="dialog" aria-modal="true" aria-labelledby="waitlist-title" aria-describedby="waitlist-desc">
+      <button type="button" class="ticket-close" data-waitlist-close aria-label="Close">✕</button>
+
+      <div class="ticket-done" id="waitlist-done" hidden>
+        <div class="ticket-tick" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 id="waitlist-done-title">Request received</h2>
+        <p>Thanks for reaching out. We will get back to you at <span id="waitlist-done-email"></span> shortly.</p>
+        <button type="button" class="btn btn--line" data-waitlist-close>Close</button>
+      </div>
+
+      <div id="waitlist-form-wrap">
+        <div class="ticket-head">
+          <p class="kicker">Partner with us</p>
+          <h2 id="waitlist-title">Partner with Spicy</h2>
+          <p id="waitlist-desc">Tell us a little about your restaurant and we will come back to you shortly.</p>
+        </div>
+
+        <form class="ticket-form" id="waitlist-form" novalidate>
+          <div class="field">
+            <label for="waitlist-applicantType">I am a</label>
+            <select id="waitlist-applicantType" name="applicantType" autocomplete="organization-title" required>
+              <option value="">Select one</option>
+              <option value="Restaurants">Restaurants</option>
+              <option value="Cloud Kitchens">Cloud Kitchens</option>
+              <option value="Implementation partner">Implementation partner</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="field-error" id="waitlist-applicantType-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="waitlist-name">Full name</label>
+            <input id="waitlist-name" name="name" type="text" autocomplete="name" required>
+            <p class="field-error" id="waitlist-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="waitlist-email">Work email</label>
+            <input id="waitlist-email" name="email" type="email" autocomplete="email" required>
+            <p class="field-error" id="waitlist-email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="waitlist-phone">Phone</label>
+            <input id="waitlist-phone" name="phone" type="tel" autocomplete="tel" required>
+            <p class="field-error" id="waitlist-phone-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="waitlist-country">Country</label>
+            <input id="waitlist-country" name="country" type="text" autocomplete="country-name" required>
+            <p class="field-error" id="waitlist-country-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="waitlist-website">Website <span class="field-hint">Optional</span></label>
+            <input id="waitlist-website" name="website" type="text" autocomplete="url">
+            <p class="field-error" id="waitlist-website-error" hidden></p>
+          </div>
+
+          <div class="ticket-error" id="waitlist-error" role="alert" hidden>
+            <p>We could not reach the signup service. Your answers are still here, so you can try again.</p>
+            <p>If it keeps failing, <a href="https://github.com/sanusi-dev/spicy/issues/new" target="_blank" rel="noreferrer">send them to us on GitHub</a> and we will add you manually.</p>
+          </div>
+
+          <button type="submit" class="btn btn--chili btn--wide" id="waitlist-submit">
+            <svg class="spinner" id="waitlist-submit-spinner" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.25"/><path d="M21 12a9 9 0 0 0-9-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <span id="waitlist-submit-label">Submit request</span>
+          </button>
+          <p class="ticket-legal">We only use these details to contact you about Spicy.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="bot-field">
+    <select name="applicantType">
+      <option value="Restaurants">Restaurants</option>
+      <option value="Cloud Kitchens">Cloud Kitchens</option>
+      <option value="Implementation partner">Implementation partner</option>
+      <option value="Other">Other</option>
+    </select>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input type="tel" name="phone">
+    <input type="text" name="country">
+    <input type="text" name="website">
+  </form>
+
+  <script src="assets/js/landing.js" defer></script>
+</body>
+</html>

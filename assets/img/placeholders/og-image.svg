@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628" role="img" aria-label="Social share image placeholder">
+  <rect x="0.5" y="0.5" width="1199" height="627" rx="26" fill="#f2f3f5" stroke="#c8ced6" stroke-width="1" stroke-dasharray="6 6"/>
+  <g transform="translate(600.0, 268.0)">
+    <rect x="-26" y="-26" width="52" height="52" rx="12" fill="none" stroke="#c8ced6" stroke-width="2"/>
+    <path d="M-10 8 L-2 -3 L4 4 L10 -5 L14 8 Z" fill="#a3adba"/>
+    <circle cx="8" cy="-10" r="3.5" fill="#a3adba"/>
+  </g>
+  <text x="50%" y="302.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="600" fill="#556275">Social share image</text>
+  <text x="50%" y="344.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#a3adba">replace: assets/img/og-image.png</text>
+  <text x="50%" y="602" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="13" fill="#a3adba" opacity="0.75">1200 x 628 · placeholder</text>
+</svg>

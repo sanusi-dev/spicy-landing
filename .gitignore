@@ -1,0 +1,79 @@
+# ---------------------------------------------------------------------------
+# Spicy landing page — what this repo tracks
+#
+# Only the files Netlify serves (landing page v2, the docs page, and their
+# assets), plus the README, DECISIONS.md and licence. Build tooling, brand
+# source material and exploration are kept out deliberately: a pushed commit
+# keeps its blobs forever, so narrowing this later never reclaims the space.
+#
+# NOTE ON NEGATIONS: to re-include a file you must ignore the *contents* of
+# its parent (`/dir/*`), never the parent itself (`/dir/`). Git cannot
+# re-include a file whose parent directory is excluded.
+# ---------------------------------------------------------------------------
+
+# --- Font library ----------------------------------------------------------
+# 33 candidate typefaces, 2.4 MB. The landing page loads five of them; the
+# rest belong to the typeface study (tools/studies/01-font-candidates.py).
+/fonts/*
+!/fonts/Bricolage_Grotesque-600.ttf
+!/fonts/Bricolage_Grotesque-700.ttf
+!/fonts/Outfit-400.ttf
+!/fonts/Outfit-500.ttf
+!/fonts/Outfit-600.ttf
+
+# --- Brand build pipeline --------------------------------------------------
+# The logo forge and its output. assets/img/logo.svg and logo-inverse.svg are
+# the *results* and are tracked; these are how they were made.
+/tools/
+/assets/logo/svg/*
+/assets/logo/svg-ember/*
+/assets/logo/svg-crimson/*
+/assets/logo/manifest.txt
+/assets/logo/README.md
+/assets/logo/og-image.png
+/assets/logo/og-image.svg
+
+# --- Placeholder art -------------------------------------------------------
+# Left over from sections that were removed. og-image.svg is still referenced
+# (kept for reference; index.html now points og:image at the PNG).
+/assets/img/placeholders/*
+!/assets/img/placeholders/og-image.svg
+
+# --- Favicons the site does not link --------------------------------------
+# index.html links favicon.ico, favicon.svg, apple-touch-icon.png and the
+# webmanifest; site.webmanifest lists the android-chrome and maskable sets.
+/assets/logo/favicons/favicon-16x16.png
+/assets/logo/favicons/favicon-32x32.png
+/assets/logo/favicons/mstile-150x150.png
+/assets/logo/favicons/browserconfig.xml
+
+# --- Source captures pasted into the root ---------------------------------
+# The shipped derivative lives in assets/img/screens/, rebuilt by
+# tools/install_hero_shot.py.
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
+# --- Exploration output ----------------------------------------------------
+/preview/
+
+# ---------------------------------------------------------------------------
+# Environment
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.netlify/
+.env
+.env.*
+
+# ---------------------------------------------------------------------------
+# Editors and OS cruft
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

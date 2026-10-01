@@ -1,0 +1,17 @@
+# Netlify configuration.
+#
+# Only used by Git-connected deploys (Site configuration -> Build & deploy).
+# Drag & drop deploys ignore this file entirely.
+#
+# There is no build step: the site is plain HTML, CSS and JS, so the repo root
+# is the publish directory.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
