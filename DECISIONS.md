@@ -49,6 +49,65 @@ whether docs URLs look like `spicy.akorede.dev/<page>/` or
 
 ---
 
+## D-002 — The full docs skeleton ships up front
+
+- **Date:** 2026-10-01
+- **Status:** Accepted
+
+**Context.** Docs content is not written yet, but agreeing the URLs and page
+set later would mean moving files and breaking links. The choice was to build
+the entire structure now, deploy it, and fill content into existing pages.
+
+**Decision.**
+
+- Eleven pages, one folder each, all under the URL scheme of D-001:
+  `introduction/`, `installation/`, `setup/`, `menu/`, `inventory/`, `pos/`,
+  `backoffice/`, `accounting/`, `reports/`, `troubleshooting/`, `glossary/`.
+- `docs/index.html` is the hub, grouping pages as Getting started / Guides /
+  Reference; it links every page and is indexable.
+- Placeholder pages ship with `<meta name="robots" content="noindex">` and a
+  "being written" note; the meta comes off when content lands.
+- The landing page links at the real pages (hero buttons and footer columns).
+- Adding a page later: create the folder + `index.html`, then add it to the
+  sidebar (all pages) and the hub. Existing URLs never change.
+
+**Consequences.**
+
+- The skeleton deploys immediately; placeholders stay out of search results
+  via `noindex` until they have content.
+- The sidebar is duplicated in every page (no build step); a navigation change
+  touches all twelve files. Accepted for now.
+
+---
+
+## D-003 — Docs pages use the v2 landing shell
+
+- **Date:** 2026-10-01
+- **Status:** Accepted
+
+**Context.** The landing page was rebuilt on `assets/css/landing.css` (v2),
+but the docs placeholder still used the older `site.css` design. Shipping docs
+in the old shell would look like a different website.
+
+**Decision.**
+
+- Every docs page loads `assets/css/landing.css` then a docs-only layer,
+  `assets/css/docs.css` (sticky sidebar, article typography), plus
+  `assets/js/landing.js`.
+- Same header, theme toggle, and footer as the landing page. The docs header
+  drops the "Partner with Us" button because the waitlist modal is not part of
+  the docs pages.
+- The docs layer adds no dependencies and no build step.
+
+**Consequences.**
+
+- `landing.js` is shared: the waitlist modal is optional (it binds only when
+  `#waitlist-modal` exists), so docs pages are safe without it.
+- `assets/css/site.css` and `assets/js/site.js` are now referenced by nothing;
+  retirement is an open decision below.
+
+---
+
 ## Open decisions (not yet locked)
 
 Candidates that came up but have no entry yet — promote to a numbered entry
@@ -56,6 +115,8 @@ once settled:
 
 - **Deploy workflow:** drag & drop vs Git-connected. Affects whether
   `netlify.toml` (headers, redirects) applies at all.
+- **Retire the legacy assets:** `assets/css/site.css` and `assets/js/site.js`
+  are no longer referenced by any page.
 
 ---
 

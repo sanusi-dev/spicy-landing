@@ -52,10 +52,15 @@ exploration that visitors never request). Prefer the Git deploy.
 
 ```
 index.html                     the landing page (all copy + sections)
-docs/index.html                documentation placeholder (built out later)
+DECISIONS.md                   locked decisions log
+docs/index.html                documentation hub (links every page)
+introduction/ … glossary/      docs skeleton, one folder per page (11 pages)
 assets/
-  css/site.css                 fonts + reset + design system + project tweaks
-  js/site.js                   nav, reveals, tabs, modal, form
+  css/landing.css              the v2 design system (fonts, layout, nav, footer)
+  css/docs.css                 docs layer: sidebar + article typography
+  css/site.css                 older design system (no longer referenced)
+  js/landing.js                nav, reveals, tabs, theme, partner form
+  js/site.js                   older interactions (no longer referenced)
   fonts/                       Geist + Geist Mono (self-hosted variable fonts)
   img/
     logo.svg                   Spicy lockup (light)
@@ -204,18 +209,28 @@ named `waitlist`:
 - Locally the form shows the success state without sending anything and logs
   `local preview: waitlist submission not sent.` to the console.
 - To point it somewhere else, edit `CONFIG.waitlistEndpoint` in
-  `assets/js/site.js`.
+  `assets/js/landing.js`.
 
-## Documentation (next phase)
+## Documentation
 
-`docs/index.html` is a styled placeholder that keeps every Docs link working.
-The plan is plain HTML pages that share `assets/css/site.css` and
-`assets/js/site.js`, linked from the landing page nav/footer.
+The docs skeleton is in place: `docs/index.html` is the hub and every page
+lives in its own top-level folder (`introduction/index.html`,
+`installation/index.html`, …), served at `spicy.akorede.dev/introduction/`
+etc. Eleven pages ship with the site: introduction, installation, setup,
+menu, inventory, POS, back office, accounting, reports, troubleshooting, and
+glossary.
 
-Each docs page lives in a top-level folder (`introduction/index.html`,
-`installation/index.html`, …) so it is served at `spicy.akorede.dev/introduction/`
-etc., with `docs/` as the hub. Locked decisions like this one are logged in
-[DECISIONS.md](DECISIONS.md).
+- Pages load `assets/css/landing.css` plus `assets/css/docs.css` (sidebar and
+  article typography) and `assets/js/landing.js`; there is still no build step.
+- Every placeholder page carries `<meta name="robots" content="noindex">`.
+  Remove it (and the `TODO` comment above it) when the page gets real content.
+- To add a page: copy any page folder, update the title/crumb/content, then
+  add it to the sidebar in all pages and to the hub cards. URLs never change
+  once a folder exists.
+- Landing links into the docs (hero buttons, footer columns) point at the
+  real pages.
+
+Locked decisions like these are logged in [DECISIONS.md](DECISIONS.md).
 
 ## Notes
 

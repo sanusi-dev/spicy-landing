@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <!--
-  Documentation hub. Links to every page in the docs skeleton.
-  Placeholder pages carry meta robots noindex until their content lands.
-  See DECISIONS.md (D-001, D-002, D-003).
+  Docs page skeleton. Content lands in the article below; the shell, sidebar
+  and styles are shared with every docs page. See DECISIONS.md (D-002, D-003).
 -->
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation - Spicy</title>
-  <meta name="description" content="Spicy documentation. Installation, setup, daily operations, accounting, and reference guides.">
+  <title>Introduction - Spicy Docs</title>
+  <meta name="description" content="What Spicy is, what it runs on, and how the pieces fit together.">
+  <!-- TODO: remove noindex once this page has real content. -->
+  <meta name="robots" content="noindex">
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -83,7 +84,7 @@
           <p class="docs-nav-title"><a href="../docs/">Spicy docs</a></p>
           <p class="docs-nav-group">Getting started</p>
           <ul>
-            <li><a href="../introduction/">Introduction</a></li>
+            <li><a href="../introduction/" aria-current="page">Introduction</a></li>
             <li><a href="../installation/">Installation</a></li>
             <li><a href="../setup/">Setup</a></li>
           </ul>
@@ -103,66 +104,12 @@
           </ul>
         </nav>
       </aside>
-
       <article class="docs-article reveal" data-visible="false">
-        <p class="kicker">Documentation</p>
-        <h1>Spicy docs</h1>
-        <p class="lede">Everything from the first install to daily operations and the books. The skeleton is in place; content is being written into it, page by page.</p>
-
-        <h2>Getting started</h2>
-        <div class="docs-cards">
-          <a class="docs-card" href="../introduction/">
-            <h3>Introduction</h3>
-            <p>What Spicy is, what it runs on, and how the pieces fit together.</p>
-          </a>
-          <a class="docs-card" href="../installation/">
-            <h3>Installation</h3>
-            <p>Requirements, installing Spicy, and the first run.</p>
-          </a>
-          <a class="docs-card" href="../setup/">
-            <h3>Setup</h3>
-            <p>Restaurant settings, production units, staff roles, and payment modes.</p>
-          </a>
-        </div>
-
-        <h2>Guides</h2>
-        <div class="docs-cards">
-          <a class="docs-card" href="../menu/">
-            <h3>Menu</h3>
-            <p>Menu items, prices, variants, add-ons, and special dishes.</p>
-          </a>
-          <a class="docs-card" href="../inventory/">
-            <h3>Inventory</h3>
-            <p>Items, warehouses, stock movements, purchase receipts, and recipes.</p>
-          </a>
-          <a class="docs-card" href="../pos/">
-            <h3>POS</h3>
-            <p>The cashier screen: shifts, orders, payments, and receipts.</p>
-          </a>
-          <a class="docs-card" href="../backoffice/">
-            <h3>Back office</h3>
-            <p>The manager console: orders, tickets, and audit trails.</p>
-          </a>
-          <a class="docs-card" href="../accounting/">
-            <h3>Accounting</h3>
-            <p>Chart of accounts, payment modes, suppliers, and the general ledger.</p>
-          </a>
-          <a class="docs-card" href="../reports/">
-            <h3>Reports</h3>
-            <p>Daily P&amp;L, sales, stock, and ledger reports.</p>
-          </a>
-        </div>
-
-        <h2>Reference</h2>
-        <div class="docs-cards">
-          <a class="docs-card" href="../troubleshooting/">
-            <h3>Troubleshooting</h3>
-            <p>Common symptoms, checks, and fixes.</p>
-          </a>
-          <a class="docs-card" href="../glossary/">
-            <h3>Glossary</h3>
-            <p>The terms Spicy uses and what they mean.</p>
-          </a>
+        <p class="docs-crumb"><a href="../docs/">Docs</a> / Introduction</p>
+        <h1>Introduction</h1>
+        <p class="lede">What Spicy is, what it runs on, and how the pieces fit together.</p>
+        <div class="docs-note">
+          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
         </div>
       </article>
     </div>
