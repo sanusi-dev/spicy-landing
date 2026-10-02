@@ -6,8 +6,6 @@ The site is published at [spicy.akorede.dev](https://spicy.akorede.dev). Spicy i
 
 ## Run it locally
 
-There is no install step and no build. From this directory:
-
 ```bash
 python3 -m http.server 8899
 ```
@@ -20,7 +18,7 @@ The landing page is `index.html`, with styles in `assets/css/landing.css` and be
 
 Documentation is one folder per page (`introduction/`, `installation/`, `pos/`, and the rest). `docs/index.html` is the hub that links them. A documentation page uses `landing.css`, `docs.css`, and `landing.js`.
 
-For a typo or a small correction, edit the file and open a pull request. Settled choices are recorded in [DECISIONS.md](DECISIONS.md).
+For a typo or a small correction, edit the file and open a pull request.
 
 ## License
 
