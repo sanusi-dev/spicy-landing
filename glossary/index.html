@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Glossary - Spicy Docs</title>
   <meta name="description" content="The terms Spicy uses and what they mean.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,167 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Glossary</p>
         <h1>Glossary</h1>
-        <p class="lede">The terms Spicy uses and what they mean.</p>
-        <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
-        </div>
+        <p class="lede">What the words mean when Spicy uses them. Terms in everyday use can have a specific meaning here.</p>
+
+        <h2>Running the till</h2>
+
+        <h3>Shift</h3>
+        <p>A trading period, opened with a float and closed with a count. Only one can be open at a time, and it belongs to whoever opened it. Spicy will not take an order without one.</p>
+
+        <h3>Opening float</h3>
+        <p>The money you declared was in the drawer when you opened the shift. The starting point for the day's cash count.</p>
+
+        <h3>Expected amount</h3>
+        <p>What a payment method should hold now: the opening float, plus payments taken, less change given, less refunds, less cash-outs.</p>
+
+        <h3>Cash variance</h3>
+        <p>The gap between expected and counted, across all payment methods. A shortage or a surplus.</p>
+
+        <h3>Cash-out</h3>
+        <p>Cash leaving the drawer during service — transport, ice, a small repair. Recorded so it does not look like a shortage at close.</p>
+
+        <h3>Draft</h3>
+        <p>An order that has not been sent to the kitchen. Freely editable until you send it.</p>
+
+        <h3>Sent</h3>
+        <p>Sent to the kitchen. Locked for editing, because the kitchen is already cooking it.</p>
+
+        <h3>Submitted</h3>
+        <p>Paid for and final. Cannot be changed. The only exit is a return.</p>
+
+        <h3>Return</h3>
+        <p>A negative order against a paid one. Puts restockable drinks back, records the refund, and reverses the accounting.</p>
+
+        <h3>Not restockable</h3>
+        <p>On a returned drink, means it is not going back on the shelf — already poured away or broken. Recorded as a loss instead of silently disappearing.</p>
+
+        <h3>KOT / kitchen ticket</h3>
+        <p>The slip that prints for the kitchen showing what to cook. A <strong>BOT</strong> is the same thing for the bar.</p>
+
+        <h3>Order number</h3>
+        <p>The sequential number the kitchen sees. <strong>Invoice number</strong> is the one on the customer's receipt. They are different.</p>
+
+        <h3>Change</h3>
+        <p>Cash handed back. Cash payments only.</p>
+
+        <h3>Round off</h3>
+        <p>Totals are rounded to the nearest whole naira. The difference between the exact and rounded figures goes to a round-off account, which is why your ledger still ties to the till.</p>
+
+        <h2>Things you sell</h2>
+
+        <h3>Item</h3>
+        <p>Anything Spicy knows about — a dish, a drink, or an ingredient. All three are the same kind of record, told apart by three checkboxes: <strong>Sell this item</strong>, <strong>Track stock levels</strong>, <strong>Buy this item</strong>.</p>
+
+        <h3>Department</h3>
+        <p><strong>Food</strong> or <strong>Drinks</strong>. Not a display category — it decides which station cooks it, whether stock comes off, and which account takes the money.</p>
+
+        <h3>Item group</h3>
+        <p>A display category — Starters, Mains, Drinks. How your menu is arranged for the cashier. Has nothing to do with department.</p>
+
+        <h3>Menu</h3>
+        <p>The list of items your cashier sees, with their prices. One is active at a time.</p>
+
+        <h3>Menu item</h3>
+        <p>A price: one item at one price on one menu.</p>
+
+        <h3>Variant</h3>
+        <p>A size of a dish, treated as its own item with its own price. Quarter, half, full.</p>
+
+        <h3>Add-on</h3>
+        <p>An extra that joins the order as its own line at its own price. "Extra cheese" is not a discount on the pizza — it is a separate thing at a separate price.</p>
+
+        <h3>Special dish</h3>
+        <p>A flag putting an item under a quick filter on the POS for featured dishes.</p>
+
+        <h2>Stock</h2>
+
+        <h3>Warehouse</h3>
+        <p>A stock location. Three: <strong>Store</strong> for deliveries, <strong>Kitchen</strong> for ingredients, <strong>Bar</strong> for drinks.</p>
+
+        <h3>Stock unit</h3>
+        <p>The countable unit for an item — bottle, kilogram, plate. Used for the count, the records, and the sale.</p>
+
+        <h3>Conversion</h3>
+        <p>A buying pack: 1 crate = 24 bottles. Applies when receiving stock. Selling one drink always deducts one bottle.</p>
+
+        <h3>Purchase receipt</h3>
+        <p>Goods arriving. Puts stock in your Store and records what you now owe. Not the bill.</p>
+
+        <h3>Stock entry</h3>
+        <p>Either a market buy you paid for on the spot, or a transfer between warehouses.</p>
+
+        <h3>Reconciliation</h3>
+        <p>A count. Opening stock for a new warehouse, adjustment for a correction, <strong>Consumption</strong> for the daily kitchen count, <strong>Waste</strong> for what was lost.</p>
+
+        <h3>Consumption</h3>
+        <p>The end-of-day kitchen count of what was used. This is what becomes your food cost.</p>
+
+        <h3>Reserved</h3>
+        <p>Stock held for an order still being built. Stops two cashiers selling the same last bottle.</p>
+
+        <h3>Weighted average cost</h3>
+        <p>Spicy's way of valuing stock: everything in a bin shares one running cost, adjusted as stock comes in. You never need to think about this, but it explains a cost that surprises you.</p>
+
+        <h3>Stock ledger</h3>
+        <p>Every single movement, with what happened, when, and why. The place to look when a figure does not add up.</p>
+
+        <h3>Recipe</h3>
+        <p>What goes into one portion of a dish. Gives you the plate cost, and lets Spicy compare expected against actual usage.</p>
+
+        <h3>Theoretical food cost</h3>
+        <p>What your recipes say you should have used. A comparison figure only — it does not change your profit.</p>
+
+        <h2>Money</h2>
+
+        <h3>Payment mode</h3>
+        <p>How the customer pays — cash, card, transfer, mobile money. Each needs an account assigned before it works.</p>
+
+        <h3>GL mapping</h3>
+        <p>The link between a payment mode and the account its money lands in.</p>
+
+        <h3>Chart of accounts</h3>
+        <p>The list of buckets your money is sorted into. Spicy writes into these for you.</p>
+
+        <h3>General ledger</h3>
+        <p>The full record of money moving. Spicy writes every entry automatically.</p>
+
+        <h3>Fiscal year</h3>
+        <p>The date range entries fall inside. You need next year's created before January.</p>
+
+        <h3>Journal entry</h3>
+        <p>A record you write by hand — opening balances, accruals, corrections. Cannot be edited once submitted.</p>
+
+        <h3>Opening entry</h3>
+        <p>The journal that loads your starting balances when you begin using Spicy. One per year.</p>
+
+        <h3>Payable</h3>
+        <p>What you owe a supplier.</p>
+
+        <h3>GRNI</h3>
+        <p>Goods received but not billed. What you owe from the moment a delivery lands, until the invoice arrives.</p>
+
+        <h3>Trial balance</h3>
+        <p>What every account holds, and proof that everything adds up.</p>
+
+        <h3>Cost of goods sold</h3>
+        <p>What the things you sold actually cost you. Not what you paid when you bought them — what they were worth at the moment they went out.</p>
+
+        <h2>Reporting</h2>
+
+        <h3>Business day</h3>
+        <p>Your trading day, which may not end at midnight. If you close at 3am, set the start hour to when you open so a 1am sale counts for the previous evening.</p>
+
+        <h3>Daily profit and loss</h3>
+        <p>One day's statement, in food, drinks and total columns. Frozen when you submit it.</p>
+
+        <h3>Prime cost</h3>
+        <p>Drink cost plus employee cost. Usually the number that predicts whether the month survives.</p>
+
+        <h3>Net profit</h3>
+        <p>What you actually made, after everything.</p>
+
+        <h3>PO register</h3>
+        <p>One row per closed shift: what was sold, and what each drawer should hold against what was counted.</p>
       </article>
     </div>
   </main>

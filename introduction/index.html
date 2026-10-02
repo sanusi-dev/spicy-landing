@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Introduction - Spicy Docs</title>
   <meta name="description" content="What Spicy is, what it runs on, and how the pieces fit together.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -94,10 +91,67 @@
       </aside>
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Introduction</p>
-        <h1>Introduction</h1>
-        <p class="lede">What Spicy is, what it runs on, and how the pieces fit together.</p>
+        <h1>Spicy: Open Source Restaurant Management System</h1>
+        <p class="lede">Spicy is a restaurant management system. It handles the counter, the kitchen, the bar, your stock, your shifts, and your accounts, on one computer inside your restaurant.</p>
+
+        <p>It runs on your own network. Nothing is sent to an outside service, and it keeps working when the internet is down. That means your sales figures, supplier details, and staff records stay on hardware you control.</p>
+
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>Spicy suits a single restaurant.</strong> One location, one set of settings, one database. It is not built for chains or franchises.</p>
+        </div>
+
+        <h2>What Spicy does</h2>
+        <ul>
+          <li><strong>Point of sale.</strong> Cashiers take orders and payments at the counter. Food prints to the kitchen, drinks print to the bar.</li>
+          <li><strong>Stock.</strong> Drinks are deducted automatically when they are sold. Food ingredients are counted by the kitchen at the end of the day.</li>
+          <li><strong>Shifts and cash.</strong> Open with a float, count the drawer at the end, and the system shows what it expected against what you counted.</li>
+          <li><strong>Accounting.</strong> Every sale writes balanced entries to a proper ledger, with food and drinks reported separately.</li>
+          <li><strong>Daily profit and loss.</strong> See your gross sales, what the food and drinks cost you, your expenses, and what you actually made.</li>
+          <li><strong>Suppliers.</strong> Record what you received, what you were billed, and what you still owe.</li>
+          <li><strong>Reports.</strong> Sales by day, item, staff member, service type, and hour. Ledger, trial balance, and stock reports.</li>
+        </ul>
+
+        <h2>Who uses Spicy</h2>
+        <p>Spicy has three roles, and each person sees only what they need.</p>
+        <ul>
+          <li><strong>Cashier</strong> takes orders, sends them to the kitchen, takes payment, and closes their shift. They see the POS and nothing else.</li>
+          <li><strong>Manager</strong> runs the back office: menu, stock, shifts, orders, accounts, and reports. They also cancel orders and process refunds.</li>
+          <li><strong>Administrator</strong> does everything a manager does, plus creating accounts and assigning roles.</li>
+        </ul>
+        <p><a href="../setup/">Setup</a> covers creating accounts and assigning roles. <a href="../backoffice/">Back office</a> covers what a manager can reach.</p>
+
+        <h2>How Spicy works day to day</h2>
+        <p>A normal day runs like this:</p>
+        <ol>
+          <li>The cashier opens a shift and counts the float into the drawer.</li>
+          <li>Customers order. The cashier builds the order, sends it, and takes payment.</li>
+          <li>Food prints to the kitchen. Drinks print to the bar.</li>
+          <li>At closing time the cashier counts the drawer and compares it to what the system expected.</li>
+          <li>The kitchen counts how much rice, oil, and chicken it actually used.</li>
+          <li>The manager produces that day's profit and loss.</li>
+        </ol>
+        <p>Steps 5 and 6 matter more than they look. Drink costs are known exactly because Spicy watched them sell. Food costs are only as accurate as the kitchen's count, which is why Spicy warns you when a count is missing rather than showing a flattering zero.</p>
+
+        <h2>What Spicy does not do</h2>
+        <p>Being clear about this up front:</p>
+        <ul>
+          <li><strong>No tax.</strong> Totals are the item prices added up and rounded to the nearest naira. There is no VAT or sales tax built in.</li>
+          <li><strong>No discounts or coupons.</strong> Everything sells at the menu price. To correct a mistake, cancel or return the order.</li>
+          <li><strong>No customer accounts.</strong> An order carries a customer's name as text. There is no stored customer record, no customer balance, and no loyalty points.</li>
+          <li><strong>No table management.</strong> Orders start by type, dine-in or takeaway, and guest count. There are no tables or floor plans.</li>
+          <li><strong>No multiple branches.</strong> One restaurant.</li>
+          <li><strong>No payroll.</strong> Staff cost is a figure you enter on the profit and loss statement yourself.</li>
+        </ul>
+
+        <h2>Getting started</h2>
+        <p>Two steps, in this order:</p>
+        <ol>
+          <li><a href="../installation/">Install Spicy</a> — get it running on the cashier's computer.</li>
+          <li><a href="../setup/">Set up your restaurant</a> — add your items, prices, payment methods, and stock.</li>
+        </ol>
+
+        <div class="docs-note">
+          <p><strong>New here?</strong> Work through <a href="../installation/">Installation</a> and then <a href="../setup/">Setup</a> in order. Setup assumes Spicy is already running.</p>
         </div>
       </article>
     </div>

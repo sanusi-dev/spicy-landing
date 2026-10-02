@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Troubleshooting - Spicy Docs</title>
   <meta name="description" content="Common symptoms, checks, and fixes.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,126 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Troubleshooting</p>
         <h1>Troubleshooting</h1>
-        <p class="lede">Common symptoms, checks, and fixes.</p>
-        <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
-        </div>
+        <p class="lede">The problems that come up most, and what to do about them.</p>
+
+        <h2>At the till</h2>
+
+        <h3>"Open a shift before taking orders"</h3>
+        <p>Nobody has opened a shift. Click <strong>Open shift</strong> on the POS and enter the float. If the previous shift was never closed, close it first.</p>
+
+        <h3>Nobody can take orders at all</h3>
+        <p>Check whether Spicy is still running. If the till machine has restarted and no one started it, nothing will work until someone does.</p>
+
+        <h3>A drink is greyed out on the menu</h3>
+        <p>It is out of stock, or already held on someone else's open order. Check <strong>Inventory → Stock balance</strong>.</p>
+        <p>If the shelf is full but Spicy thinks it is empty, stock was consumed without being recorded. Check <strong>Inventory → Stock ledger</strong> for what happened.</p>
+
+        <h3>The order will not send to the kitchen</h3>
+        <p><strong>"Configure a production unit before sending"</strong> means a station is missing. A manager needs to finish <a href="../setup/">Setup</a> — the kitchen or bar needs a production unit with its accounts set.</p>
+
+        <h3>Payment is refused</h3>
+        <ul>
+          <li><strong>"Payment must cover the full total"</strong> — the amount entered is short. Only cash can be overpaid.</li>
+          <li><strong>"Only cash payments may include change"</strong> — a card or transfer cannot be overpaid.</li>
+          <li><strong>"Payment mode has no GL mapping"</strong> — a manager must give that method a ledger account.</li>
+          <li><strong>"Payment mode was not declared when the shift opened"</strong> — the method was turned on after the shift started. It works next shift.</li>
+          <li><strong>Reference already used</strong> — that reference was entered before. Find the other transaction or use the correct reference.</li>
+        </ul>
+
+        <h3>I cannot edit an order</h3>
+        <p><strong>"This order was sent to the kitchen or bar"</strong> means the kitchen has it, so it is locked. Cancel it and take a new one. Only a manager can cancel.</p>
+
+        <h3>I cannot see a colleague's order</h3>
+        <p>Each cashier sees only their own orders. Ask a manager.</p>
+
+        <h3>Receipt did not print</h3>
+        <p>The sale went through regardless — a printer problem never blocks a sale. Take the receipt another way and tell your manager, because the ticket may not have reached the kitchen.</p>
+        <p>Check the printer has paper, is switched on, and is still on the network.</p>
+
+        <h2>Shifts</h2>
+
+        <h3>The shift will not close</h3>
+        <p>Finish or delete any open draft orders first. Spicy will not close a shift with orders still open.</p>
+
+        <h3>It will not accept my counted figure</h3>
+        <p>A cash figure below expected is fine — that is a shortage. But a <strong>transfer or card figure higher than expected</strong> is rejected. You cannot deposit money into the bank that you never took, so the count is wrong rather than the drawer being rich.</p>
+
+        <h3>A large difference needs approval</h3>
+        <p>Over your set threshold, closing needs a manager and a written explanation of what happened. That is the theft-and-error control working. See <a href="../pos/">POS</a>.</p>
+
+        <h3>I need to correct a closed shift</h3>
+        <p>You cannot edit it. Reopen and close it again if nothing else has opened since. If a later shift is already open, ask an administrator — the correction has to go through the ledger.</p>
+
+        <h2>Stock</h2>
+
+        <h3>Consumption count is higher than I have</h3>
+        <p>Spicy will not let the count exceed what the kitchen bin holds. Either the previous count was wrong, or stock left the kitchen without a transfer or a sale being recorded. Check <strong>Inventory → Stock ledger</strong> for that warehouse.</p>
+
+        <h3>"Opening Stock" is refused</h3>
+        <p>That reason only works on a warehouse with no history at all. To correct a warehouse that already has stock, use <strong>Adjustment</strong>.</p>
+
+        <h3>I need to reverse a receipt or transfer</h3>
+        <p>Cancel it if nothing has happened since. A receipt with a supplier invoice attached cannot be cancelled — deal with the invoice first. A transfer that has already been consumed cannot be cancelled either; transfer the remainder back or file an adjustment.</p>
+
+        <h3>A cost figure surprises me</h3>
+        <p>Spicy keeps a running average cost. Receiving stock blends the new price in, which moves the cost of everything in that warehouse. A drink you bought much cheaper than usual lowers the average for the whole bin. Check <strong>Stock ledger</strong> for the movements behind it.</p>
+
+        <h3>A dish shows no food cost</h3>
+        <p>Either it has no <a href="../inventory/">recipe</a>, or nobody filed a kitchen count that day. Both are on the <strong>Food usage</strong> report.</p>
+
+        <h2>Reports</h2>
+
+        <h3>Food cost shows as zero</h3>
+        <p>The kitchen did not file a count for that day. The statement says so. File one — see <a href="../inventory/">Inventory</a>. Submitting the count after the statement is submitted will not change that statement.</p>
+
+        <h3>The day's figures look wrong</h3>
+        <ul>
+          <li><strong>Business day start hour</strong> — if you close after midnight, a 1am sale belongs to the previous day. Check <strong>Reports → P&amp;L settings</strong>.</li>
+          <li><strong>The computer's clock and time zone</strong> — Spicy uses them to decide the trading day. If they are wrong, every date is wrong.</li>
+          <li><strong>Returns</strong> — a refund nets off on the day the return was processed, not the day of the original sale. A sale and its refund in different days will not cancel out.</li>
+        </ul>
+
+        <h3>My two profit and loss figures disagree</h3>
+        <p>Expected. The daily statement includes expenses you typed in and uses the kitchen's count. The accounting one only includes what was posted. See <a href="../reports/">Reports</a>.</p>
+
+        <h3>Can I get yesterday's statement back</h3>
+        <p>If you submitted it, you can cancel and amend. If you deleted it before submitting, it is gone — create a new one. It recalculates from the day's sales.</p>
+
+        <h2>Accounts and access</h2>
+
+        <h3>Someone cannot sign in</h3>
+        <p>Check their account has not been deactivated. Administrators can reactivate it under <strong>Settings → User roles</strong>.</p>
+
+        <h3>Someone sees "waiting for approval"</h3>
+        <p>They signed in but have no role. An administrator needs to assign one under <strong>Settings → User roles</strong>.</p>
+
+        <h3>Someone cannot see a page they should</h3>
+        <p>Their role does not include it. Cashiers cannot reach the back office at all. Managers cannot assign roles. Check <a href="../backoffice/">Back office</a> for who can do what.</p>
+
+        <h3>Someone forgot their password</h3>
+        <p>There is no reset flow. An administrator creates them a new login.</p>
+
+        <h2>Setup problems</h2>
+
+        <h3>Everything looks unconfigured</h3>
+        <p>The standard accounts were never loaded. Run:</p>
+        <pre><code>make manage ARGS='seed_pos_setup'</code></pre>
+
+        <h3>The POS is empty</h3>
+        <p>No menu is set as active, or every menu item is disabled. Check <strong>Settings → Restaurant settings</strong>.</p>
+
+        <h3>Sales are being refused</h3>
+        <p>Almost always a missing account. The message names what is missing. Work through <a href="../setup/">Setup</a> — payment methods need accounts, production units need income and returns accounts.</p>
+
+        <h2>Still stuck</h2>
+        <p>Before asking for help, note down:</p>
+        <ul>
+          <li>The exact message on screen.</li>
+          <li>What you were doing at the time.</li>
+          <li>The invoice or order number, if it involves a transaction.</li>
+          <li>Whether the till and the printers were working.</li>
+        </ul>
+        <p>That turns a slow exchange into a fast one.</p>
       </article>
     </div>
   </main>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Installation - Spicy Docs</title>
   <meta name="description" content="Requirements, installing Spicy, and the first run.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,101 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Installation</p>
         <h1>Installation</h1>
-        <p class="lede">Requirements, installing Spicy, and the first run.</p>
+        <p class="lede">Get Spicy running on the computer at your counter. This should take about 20 minutes.</p>
+
+        <h2>What you need</h2>
+        <table>
+          <thead>
+            <tr><th>Requirement</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>A computer</strong></td><td>This becomes your till. It stays on during trading.</td></tr>
+            <tr><td><strong>Three thermal printers</strong></td><td>One for receipts, one for the kitchen, one for the bar. Kitchen and bar printers are on the network.</td></tr>
+            <tr><td><strong>PostgreSQL</strong></td><td>Holds all your data. Comes with Docker, which is the easiest way to run it.</td></tr>
+            <tr><td><strong>Python 3.14+</strong></td><td>Runs Spicy.</td></tr>
+            <tr><td><strong>Node.js and npm</strong></td><td>Builds the buttons and styling.</td></tr>
+            <tr><td><strong>Docker</strong></td><td>Runs PostgreSQL and Redis for you. Optional but recommended.</td></tr>
+          </tbody>
+        </table>
+
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>Use a wired connection for the till.</strong> The cashier's computer should be on Ethernet where possible. If the network drops mid-shift, the system stops accepting orders, and you do not want that on Wi-Fi.</p>
         </div>
+
+        <h2>Install</h2>
+
+        <h3>Step 1: Get the code</h3>
+        <pre><code>git clone https://github.com/sanusi-dev/spicy.git
+cd spicy</code></pre>
+
+        <h3>Step 2: Start the database</h3>
+        <p>This copies a sample settings file, starts PostgreSQL and Redis, creates your database tables, and installs the front end files.</p>
+        <pre><code>make init</code></pre>
+        <p>It may take a few minutes on the first run while everything downloads.</p>
+
+        <h3>Step 3: Start Spicy</h3>
+        <pre><code>make dev</code></pre>
+        <p>Leave this running. Spicy is available at <a href="http://localhost:8000" target="_blank" rel="noreferrer">localhost:8000</a>.</p>
+
+        <h3>Step 4: Create your administrator account</h3>
+        <p>While Spicy is running, open a second terminal in the same folder and run:</p>
+        <pre><code>make manage ARGS='createsuperuser'</code></pre>
+        <p>Pick a username and password. This is the administrator account. Use it to sign in and create accounts for your staff.</p>
+
+        <h3>Step 5: Load the standard accounts</h3>
+        <p>Spicy needs a set of accounts before it can record a sale — things like Food Sales, Cash Account, and Cost of Goods Sold. This command sets those up, along with sample items and prices so you can try things out.</p>
+        <pre><code>make manage ARGS='seed_pos_setup'</code></pre>
+
+        <div class="docs-note">
+          <p><strong>Delete the sample items before you trade.</strong> They are placeholders. Clear them out and add your own in <a href="../setup/">Setup</a>.</p>
+        </div>
+
+        <h2>Check it worked</h2>
+        <p>Sign in at <a href="http://localhost:8000" target="_blank" rel="noreferrer">localhost:8000</a>. An administrator lands on the back office dashboard.</p>
+        <p>To confirm there are no problems, run:</p>
+        <pre><code>make manage ARGS='check'</code></pre>
+        <p>A healthy install reports <code>System check identified no issues</code>.</p>
+
+        <h2>Before you take real orders</h2>
+        <p>Three things to sort out first.</p>
+
+        <h3>Turn off debug mode</h3>
+        <p>Open the <code>.env</code> file and set:</p>
+        <pre><code>DEBUG=False</code></pre>
+        <p>Debug mode is for development. Leaving it on lets anyone signed in as an administrator change your sales and stock figures directly, bypassing the safety checks. Do not trade with it on.</p>
+
+        <h3>Set your own secret key</h3>
+        <p>Run this to generate one:</p>
+        <pre><code>python -c "import secrets; print(secrets.token_urlsafe(64))"</code></pre>
+        <p>Paste the result into the <code>SECRET_KEY</code> line in <code>.env</code>. This key protects your staff logins. If you skip it, anyone who reads the public source can sign in as your staff.</p>
+
+        <h3>Set your time zone</h3>
+        <p>Spicy uses your computer's clock to decide which trading day a sale belongs to. If you close at 3am, that sale still counts for the previous day. Make sure the computer's date, time, and time zone are correct — check the automatic time setting in your operating system.</p>
+
+        <h2>Printing</h2>
+        <p>Spicy prints through a small helper on the same computer. It talks to your receipt printer directly, and to the kitchen and bar printers over the network.</p>
+        <p>Once it is running, add each printer in <a href="../setup/">Setup</a> under Production Units: its IP address, whether it prints receipts or tickets, its paper width, and whether it cuts the paper off after printing.</p>
+        <div class="docs-note">
+          <p><strong>A printer problem will not stop you selling.</strong> If a printer is unreachable, the sale still goes through and you get a warning. But the kitchen will not receive the food, so nothing gets cooked. Fix the printer before you trade.</p>
+        </div>
+
+        <h2>Running it every day</h2>
+        <p>When you switch the till on in the morning:</p>
+        <ol>
+          <li>Start Docker and the database: <code>make start-bg</code></li>
+          <li>Start Spicy: <code>make dev</code></li>
+          <li>Open the POS and open your shift</li>
+        </ol>
+        <p>Leaving <code>make dev</code> running in a terminal window works, but it stops if you close that window or log out of the computer. For a permanent setup, ask whoever set it up to run Spicy as a service that starts automatically.</p>
+
+        <h2>Backing up</h2>
+        <p>From day one, take a backup every night:</p>
+        <pre><code>make backup</code></pre>
+        <p>This saves your sales data and your item photos to the <code>backups</code> folder. Set it to run automatically after you close, and copy the files to another drive weekly. A backup sitting on the same computer does not help if that computer is stolen.</p>
+        <p>Run it once by hand now, before you have any real data, so you know it works and you can find the files.</p>
+
+        <h2>Next</h2>
+        <p>Spicy is running but has none of your restaurant in it yet. Go to <a href="../setup/">Setup</a>.</p>
       </article>
     </div>
   </main>

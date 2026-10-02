@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Back office - Spicy Docs</title>
   <meta name="description" content="The manager console: orders, tickets, and audit trails.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,94 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Back office</p>
         <h1>Back office</h1>
-        <p class="lede">The manager console: orders, tickets, and audit trails.</p>
+        <p class="lede">Everything a manager or administrator can reach: the setup screens, orders, shifts, staff, and who is allowed to do what.</p>
+
+        <h2>Who can see what</h2>
+        <p>Spicy has three roles, and each person sees only what their job needs.</p>
+        <table>
+          <thead>
+            <tr><th></th><th>Cashier</th><th>Manager</th><th>Administrator</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Point of sale</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Close a shift</td><td>Own shift only</td><td>Any shift</td><td>Any shift</td></tr>
+            <tr><td>See all orders</td><td>Own sales</td><td>All</td><td>All</td></tr>
+            <tr><td>Cancel or return an order</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Inventory, menu, shifts</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Payment methods</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Restaurant settings, production units</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Accounting and reports</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Create accounts, assign roles</td><td>No</td><td>No</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+
+        <p>Signing in takes each person to the right place: cashiers land on the POS, managers and administrators on the dashboard.</p>
+
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>If someone reaches a page they should not, they get a clear error, not a blank screen.</strong> Being signed out sends them to sign in. Being signed in without the right role gives them a "no permission" message. Nothing is hidden-only — the checks are real.</p>
         </div>
+
+        <h2>Staff accounts</h2>
+        <p>Go to <strong>Settings → User roles</strong>. Administrators only.</p>
+        <ul>
+          <li><strong>Add user</strong> — create a login with a username and password.</li>
+          <li><strong>Assign role</strong> — Cashier, Manager, or Administrator.</li>
+          <li><strong>Remove role</strong> — takes the role away. The person sees a waiting page until reassigned.</li>
+          <li><strong>Deactivate</strong> — disables the login without deleting the account.</li>
+        </ul>
+        <p>Give every staff member their own login. If two people share one, your sales by staff member are meaningless, and you cannot tell who closed a shift.</p>
+
+        <h3>When someone leaves</h3>
+        <p><strong>Deactivate, do not delete.</strong> Their name stays on every order and shift they worked. When you come back to a strange figure in six months, that name is the difference between a five-minute check and a mystery.</p>
+
+        <h3>Passwords</h3>
+        <p>Spicy checks new passwords against a minimum length, common passwords, all numbers, and similarity to the username. There is no password reset flow, so if someone forgets theirs, an administrator creates them a new login.</p>
+        <div class="docs-note">
+          <p><strong>Ask staff to use something you can recognise.</strong> On a shared till, "password123" on four accounts is a real problem. Use a pattern that means nothing outside the restaurant.</p>
+        </div>
+
+        <h2>Orders</h2>
+        <p>Go to <strong>Orders → Order register</strong>. Every order, filterable by status, type, and date, with search.</p>
+        <p>Open any order to see its lines, payments, tickets, and the full history of what happened to it — every change, with who did it and when.</p>
+        <ul>
+          <li><strong>Cancel</strong> — for a sent order that was not paid for. Requires a reason, and the kitchen gets a cancellation ticket.</li>
+          <li><strong>Return</strong> — for a paid order. See below.</li>
+          <li><strong>Delete</strong> — only for a draft that was never sent.</li>
+        </ul>
+        <p><strong>Kitchen &amp; bar tickets</strong> shows every ticket ever printed, with its print status, and lets a manager retry a failed print or reprint one.</p>
+
+        <h2>Returns and refunds</h2>
+        <p>A manager can return a paid order from the order register.</p>
+        <ol>
+          <li>Open the order and choose <strong>Return</strong>. Spicy creates a return with the same items, in reverse.</li>
+          <li>Reduce or remove any line. Only what you leave gets refunded.</li>
+          <li>For a drink that has already been poured away or broken, tick <strong>Not restockable</strong>. It will not go back on the shelf — it is recorded as a loss instead, so the cost shows up as wastage rather than disappearing.</li>
+          <li>Submit the return.</li>
+        </ol>
+        <p>Drinks you are putting back are returned at the cost the original sale used, even if prices have moved since. Your stock and your accounts stay consistent.</p>
+        <p>If a customer brings back a drink you did not sell, process the return as normal and note what happened. Spicy handles it correctly either way — it simply has no way of knowing it was not your stock.</p>
+
+        <div class="docs-note">
+          <p><strong>A paid order cannot be cancelled, only returned.</strong> That is deliberate — there is no path that erases a completed sale. Corrections go on the record where you can see them.</p>
+        </div>
+
+        <h2>Shifts</h2>
+        <p>Go to <strong>Shifts</strong>. Opening and closing entries are listed here with their totals, and the POS close is where they normally happen.</p>
+        <p>Each close shows the frozen figures for that shift: number of bills, items sold, net total, and any refunds. Useful when a cashier and a manager remember a shift's take differently.</p>
+
+        <h2>The dashboard</h2>
+        <p>Where managers land after signing in. It is a navigation page for the back office — every section in one place.</p>
+
+        <h2>Settings</h2>
+        <p><strong>Restaurant settings</strong>, <strong>User roles</strong>, and <strong>Production units</strong> are all under Settings. See <a href="../setup/">Setup</a> for what each one does.</p>
+
+        <h2>Restrictions worth knowing</h2>
+        <ul>
+          <li>A manager can edit and delete items, warehouses, recipes, and prices. There is no separate tier for master data — if you want that restricted to administrators, ask and it can be tightened.</li>
+          <li>Cashiers can record cash-outs during service but only a manager can cancel one.</li>
+          <li>A large cash variance cannot be closed without a manager signing it off.</li>
+          <li>An administrator cannot have their role removed while another administrator is needed to replace them — demote first.</li>
+        </ul>
       </article>
     </div>
   </main>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Setup - Spicy Docs</title>
   <meta name="description" content="Restaurant settings, production units, staff roles, and payment modes.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,171 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Setup</p>
         <h1>Setup</h1>
-        <p class="lede">Restaurant settings, production units, staff roles, and payment modes.</p>
+        <p class="lede">This guide takes you step by step through setting up Spicy for your restaurant. Work through the steps in order — later ones depend on earlier ones.</p>
+
+        <p>Allow about an hour the first time. If you get stuck, <a href="../troubleshooting/">Troubleshooting</a> has answers to the common problems.</p>
+
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>Before you start.</strong> Spicy must already be running. See <a href="../installation/">Installation</a> if it is not.</p>
         </div>
+
+        <h2>Step 1: Restaurant details</h2>
+        <p>Go to <strong>Settings → Restaurant settings</strong>.</p>
+        <ul>
+          <li><strong>Company</strong> — your restaurant's name. It prints on your receipts.</li>
+          <li><strong>Invoice series prefix</strong> — the letters that start your invoice numbers. The default <code>REST-</code> is fine to keep.</li>
+          <li><strong>Address</strong> — your restaurant's address.</li>
+        </ul>
+
+        <h2>Step 2: Warehouses</h2>
+        <p>Go to <strong>Inventory → Warehouses</strong>. Spicy needs three, and they must be different from each other:</p>
+        <ul>
+          <li><strong>Store</strong> — where deliveries land before you move them.</li>
+          <li><strong>Kitchen</strong> — where your food ingredients live.</li>
+          <li><strong>Bar</strong> — where your drinks live. This is the one Spicy deducts from when you sell a drink.</li>
+        </ul>
+        <p>Return to <strong>Settings → Restaurant settings</strong> and set <strong>Central Store warehouse</strong> and <strong>Bar / POS warehouse</strong> to match.</p>
+
+        <h2>Step 3: Units and item groups</h2>
+        <p>Go to <strong>Inventory overview</strong>. Add the units you count stock in — Bottle, Carton, Kg, Bag, Plate, Piece. Keep the list short and use the same ones every time.</p>
+        <p>On the same page, set up your <strong>item groups</strong>. These are the categories your staff see on the POS screen. Choose based on how your staff think about your menu: Starters, Mains, Drinks, Sides, Desserts.</p>
+
+        <h2>Step 4: Items</h2>
+        <p>Go to <strong>Inventory → Items</strong>. This is where you build your menu. Every item needs a name, a group, a unit, and a type — <strong>Food</strong> or <strong>Drinks</strong> — plus the three checkboxes that decide how Spicy treats it.</p>
+
+        <h3>Drinks</h3>
+        <p>Tick all three: <strong>Sell this item</strong>, <strong>Track stock levels</strong>, and <strong>Buy this item</strong>. Drinks are counted and deducted automatically when sold.</p>
+        <p>One drink you sell.</p>
+        <pre><code>Item name: Coca-Cola 50cl
+Group: Drinks
+Unit: Bottle
+Department: Drinks
+[✓] Sell this item
+[✓] Track stock levels
+[✓] Buy this item</code></pre>
+
+        <h3>Dishes you sell</h3>
+        <p>Tick <strong>Sell this item</strong> only. Do not tick <strong>Track stock levels</strong>.</p>
+        <p>Why: you never receive "jollof rice" into a warehouse. You receive rice, oil, tomato, and chicken. The dish is a recipe made from those ingredients, and Spicy costs it from your kitchen count.</p>
+        <pre><code>Item name: Jollof Rice
+Group: Mains
+Unit: Plate
+Department: Food
+[✓] Sell this item
+[ ] Track stock levels
+[ ] Buy this item</code></pre>
+
+        <h3>Ingredients</h3>
+        <p>Tick <strong>Track stock levels</strong> and <strong>Buy this item</strong>, but not <strong>Sell this item</strong>. You buy these and count them, but nobody orders them off the menu.</p>
+        <pre><code>Item name: Rice
+Group: Ingredients
+Unit: Kg
+Department: Food
+[ ] Sell this item
+[✓] Track stock levels
+[✓] Buy this item</code></pre>
+
+        <p><strong>Pause this item</strong> hides an item from new orders and purchases without deleting it. Useful for a dish you have stopped selling temporarily.</p>
+
+        <div class="docs-note">
+          <p><strong>Spicy refuses combinations that do not make sense.</strong> If you try to make a dish both sellable and stock tracked, it will stop you. That is the rule working, not a fault.</p>
+        </div>
+
+        <h2>Step 5: Bulk buying</h2>
+        <p>If you buy drinks by the crate or ingredients by the bag, add a conversion on the item. Open <strong>Inventory → Items</strong>, open the item, and add a conversion — for example, 1 Crate = 24 Bottles.</p>
+        <p>You can then receive 5 crates on a receipt and Spicy works out that you received 120 bottles and works out the cost per bottle for you. The conversion only applies when receiving stock. Selling one drink always deducts one bottle.</p>
+
+        <h2>Step 6: Recipes</h2>
+        <p><strong>Use variants</strong> on an item turns a dish into a template for sizes. The template itself is not sold or stocked — only its sizes are. See Step 8.</p>
+        <p>For each dish you sell, add a <strong>Recipe</strong> listing what goes into it. You can do this from the item, or manage them all at once under <strong>Inventory → Recipes</strong>.</p>
+        <p>One recipe per dish, in the ingredient's own unit. A jollof rice recipe might be 0.125 kg rice, 0.03 kg oil, and so on.</p>
+        <p>Recipes do two things. They show you what a portion should cost, and they let Spicy compare what you <em>should</em> have used against what the kitchen <em>actually</em> used. That difference is one of the most useful numbers Spicy gives you — a big gap usually means over-preparation or waste nobody wrote down.</p>
+
+        <h2>Step 7: Your menu and prices</h2>
+        <p>Go to <strong>Menu → Menus</strong> and create a menu. Add each dish and drink you sell, with the price the customer pays.</p>
+        <ul>
+          <li>Leave the price blank and Spicy fills it from your last purchase price.</li>
+          <li><strong>Special dish</strong> puts an item under a quick filter on the POS for featured dishes.</li>
+          <li><strong>Disabled</strong> takes an item off the POS without deleting its price — useful for a dish you have run out of.</li>
+        </ul>
+        <p>Then go to <strong>Settings → Restaurant settings</strong> and set this as your <strong>Active menu</strong>. The POS only shows the active menu.</p>
+
+        <h2>Step 8: Sizes and add-ons</h2>
+        <p><strong>Sizes.</strong> If you sell chicken in quarter, half, and full, make the dish a template with sizes. Create Quarter, Half, and Full as their own items with their own prices, then link them under the parent dish. On the POS the dish shows as one tile showing "₦1,200 – ₦3,500" and the cashier picks the size.</p>
+        <p><strong>Add-ons.</strong> "Extra cheese" is its own item with its own price, linked to the dish it belongs to. It shows up as a separate line on the bill at its own price.</p>
+        <p>Both work the same way: a separate item with a separate price, linked to a parent.</p>
+
+        <h2>Step 9: Payment methods</h2>
+        <p>Go to <strong>Payments</strong> in the back office. You get Cash, Bank Transfer, Card, and USSD / Mobile Money to start with.</p>
+        <ul>
+          <li><strong>Cash</strong> is the only type that can give change. You can only use one cash method per shift.</li>
+          <li>Turn off any method you do not accept.</li>
+        </ul>
+        <p>Each method needs an <strong>account</strong> — the ledger account its money lands in. Without it, Spicy will refuse to accept that method at the till. Open the method, pick an account under <strong>GL mappings</strong>, and save. Cash should point at your Cash Account. Each electronic method can have its own account if you want to see them separately.</p>
+
+        <div class="docs-note">
+          <p><strong>Decide now about payment references.</strong> On <strong>Settings → Restaurant settings</strong> there is a <strong>Require payment reference</strong> option. Turn it on and every transfer or card payment needs a reference number, and no reference can be used twice. That catches a transaction entered twice by mistake. Most restaurants want this on.</p>
+        </div>
+
+        <h2>Step 10: Kitchen and bar</h2>
+        <p>Go to <strong>Settings → Production units</strong>. These are your stations, and Spicy routes tickets between them.</p>
+        <ul>
+          <li><strong>Kitchen</strong> — department Food, warehouse Kitchen.</li>
+          <li><strong>Bar</strong> — department Drinks, warehouse Bar.</li>
+        </ul>
+        <p>On each one, set:</p>
+        <ul>
+          <li><strong>Income account</strong> — where that department's sales are recorded. Kitchen should point at Food Sales, Bar at Drinks Sales. Setting these is what lets Spicy report food and drinks separately.</li>
+          <li><strong>Sales returns account</strong> — where refunds for that department land.</li>
+          <li><strong>Expense account</strong> — where that department's costs land.</li>
+        </ul>
+        <p>Then add the printer for that station: its <strong>IP address</strong>, <strong>paper width</strong>, and <strong>cut mode</strong>. Tick it to print tickets. If your bar does not need a ticket on takeaways, use the <strong>Block takeaway KOT</strong> option.</p>
+
+        <div class="docs-note">
+          <p><strong>Don't skip this step.</strong> Without a production unit for each department, Spicy cannot take payment. It will stop and tell you which department is missing.</p>
+        </div>
+
+        <h2>Step 11: Opening stock</h2>
+        <p>You need stock in the system before you can sell. Go to <strong>Inventory → Reconciliations</strong> and create one per warehouse.</p>
+        <ul>
+          <li><strong>Store</strong> — reason <strong>Opening Stock</strong>. Enter what you have and what you paid per unit.</li>
+          <li><strong>Kitchen</strong> — same, for your ingredients.</li>
+          <li><strong>Bar</strong> — same, for your drinks.</li>
+        </ul>
+        <p>Opening Stock only works on a warehouse that has never had stock before. If you need to correct one later, use <strong>Adjustment</strong> instead.</p>
+        <p>After this, move stock from the Store to the Kitchen and Bar using <strong>Inventory → Stock entries</strong> with purpose <strong>Material Transfer</strong>.</p>
+        <p>As deliveries come in, use <strong>Purchase receipts</strong> for anything you will be invoiced for, and <strong>Stock entries</strong> with purpose <strong>Material Receipt</strong> for market buys you pay for on the spot. See <a href="../inventory/">Inventory</a>.</p>
+
+        <h2>Step 12: Trading day</h2>
+        <p>Go to <strong>Reports → P&amp;L settings</strong>. This sets the rules the daily profit and loss statement follows.</p>
+        <ul>
+          <li><strong>Business day start hour</strong> — if you close after midnight, set this to when you open. If you open at 7am and close at 3am, set it to 7. That way a 1am sale counts for the previous evening's trading.</li>
+          <li><strong>Electricity rate</strong> and <strong>daily depreciation</strong> — whatever you want to carry on the profit and loss.</li>
+        </ul>
+        <p>Now add your recurring expenses: rent, salaries, and anything else you want to see each day. Mark each as direct or indirect, and daily or monthly. Monthly amounts are spread across the days of the month automatically.</p>
+
+        <h2>Step 13: Staff accounts</h2>
+        <p>An administrator creates the accounts. Go to <strong>Settings → User roles</strong> in the back office.</p>
+        <ul>
+          <li><strong>Add user</strong> — create a login for each person.</li>
+          <li><strong>Assign role</strong> — Cashier, Manager, or Administrator.</li>
+        </ul>
+        <p>Each person then signs in and lands on the right screen: cashiers on the POS, managers on the back office.</p>
+        <p>When someone leaves, <strong>deactivate</strong> their account rather than deleting it. Their name stays on the orders and shifts they worked, which matters when you come to check a figure months later.</p>
+
+        <h2>Step 14: Take a backup</h2>
+        <p>Before you process a single real order:</p>
+        <pre><code>make backup</code></pre>
+        <p>Confirm the files appear in the <code>backups</code> folder, then arrange for this to run every night.</p>
+
+        <h2>You're set</h2>
+        <p>Next steps:</p>
+        <ul>
+          <li><a href="../pos/">POS</a> — how your cashier works the counter.</li>
+          <li><a href="../menu/">Menu</a> — managing items and prices day to day.</li>
+          <li><a href="../inventory/">Inventory</a> — receiving stock, transfers, and counts.</li>
+          <li><a href="../reports/">Reports</a> — reading your daily profit and loss.</li>
+        </ul>
       </article>
     </div>
   </main>

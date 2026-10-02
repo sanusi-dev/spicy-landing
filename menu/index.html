@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Menu - Spicy Docs</title>
   <meta name="description" content="Menu items, prices, variants, add-ons, and special dishes.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,70 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Menu</p>
         <h1>Menu</h1>
-        <p class="lede">Menu items, prices, variants, add-ons, and special dishes.</p>
+        <p class="lede">Adding dishes and drinks, setting prices, and taking things off sale without losing your work.</p>
+
+        <p>New to Spicy? The one-time menu setup is in <a href="../setup/">Setup</a>. This page is about changing things afterwards.</p>
+
+        <h2>Menus</h2>
+        <p>Go to <strong>Menu → Menus</strong>. A menu is the list of items your cashier sees, with their prices.</p>
+        <p>You can have more than one — a main menu, a lunch list, a drinks-only list for the bar. Set which one is live under <strong>Settings → Restaurant settings</strong>, on <strong>Active menu</strong>. The POS only ever shows the active one.</p>
+        <p>Turning a menu off hides everything on it from the POS without deleting any prices. Useful for a seasonal menu.</p>
+
+        <h2>Menu items and prices</h2>
+        <p>Go to <strong>Menu → Menu items</strong>. Each row links a dish or drink to your menu at a price.</p>
+        <ul>
+          <li><strong>Rate</strong> — what the customer pays. Leave it blank and Spicy fills it from what you last paid for the item, as a starting point.</li>
+          <li><strong>Special dish</strong> — puts the item under a quick filter on the POS for featured dishes.</li>
+          <li><strong>Disabled</strong> — takes the item off the POS right away, keeping its price in the database.</li>
+        </ul>
+
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>Use Disabled rather than deleting.</strong> Running out of a dish or a drink is normal. Disable it, sell it again tomorrow, and you have not lost your price or your history.</p>
         </div>
+
+        <p>A price change affects new orders only. Orders already taken keep the price they were rung up at, so yesterday's sales figures never change retroactively.</p>
+
+        <h2>Sizes</h2>
+        <p>For a dish sold in sizes — quarter, half, full chicken:</p>
+        <ol>
+          <li>Create each size as its own item under <strong>Inventory → Items</strong>. Tick <strong>Sell this item</strong> and leave stock tracking off, exactly as you would for a dish.</li>
+          <li>On the parent dish, tick <strong>Use variants</strong>. The parent becomes a template and stops being sellable itself.</li>
+          <li>Go to <strong>Menu → Variants</strong> and link the parent to each size.</li>
+          <li>Add each size to your menu at its own price.</li>
+        </ol>
+        <p>On the POS, the parent shows as one tile with a price range — "₦1,200 – ₦3,500". Your cashier taps it and picks the size. The size joins the order as its own line at its own price.</p>
+
+        <h2>Add-ons</h2>
+        <p>For extras like "extra cheese" or "extra shot":</p>
+        <ol>
+          <li>Create the extra as its own item, sellable, priced.</li>
+          <li>Add it to your menu at its price.</li>
+          <li>Go to <strong>Menu → Add-ons</strong> and link it to the dish it belongs to.</li>
+        </ol>
+        <p>When the cashier picks it, the extra appears on the bill as its own line at its own price. Jollof rice at ₦2,000 plus extra plantain at ₦500 shows as two lines totalling ₦2,500.</p>
+
+        <div class="docs-note">
+          <p><strong>Add-ons and sizes are separate items with separate prices.</strong> They are not "modifiers" that adjust the parent's price. An add-on always adds its full price on top.</p>
+        </div>
+
+        <h2>Changing prices</h2>
+        <p>Prices are edited on the menu item, not on the inventory item — the same dish can cost different amounts on different menus.</p>
+        <p>To change prices across a whole menu at once, there is no bulk edit. Work down the list of menu items. If you have many prices to change, a quick pattern is to open the item, change the rate, and work through the list.</p>
+
+        <h2>Removing something properly</h2>
+        <ul>
+          <li><strong>Temporarily unavailable</strong> — tick <strong>Disabled</strong> on the menu item. Back on sale next week with the price intact.</li>
+          <li><strong>Permanly off the menu</strong> — delete the menu item. The underlying item stays in the system, so your sales history is untouched.</li>
+          <li><strong>Never delete the underlying item</strong> if it has been sold. It holds your history and any stock count.</li>
+        </ul>
+
+        <h2>Item images</h2>
+        <p>Add a photo on the item and it shows on the POS tile, making it faster for your cashier to find things. Without one, Spicy shows the item's initials instead.</p>
+        <p>Photos are optional. For a large menu, prioritise the items you take most orders for.</p>
+
+        <h2>Check your prices against cost</h2>
+        <p>Every dish with a <a href="../inventory/">recipe</a> shows a plate cost — what one portion should cost at current prices. Check it against your selling price.</p>
+        <p>A dish selling well below its plate cost is working you every time you sell it. This is often invisible until you look.</p>
       </article>
     </div>
   </main>

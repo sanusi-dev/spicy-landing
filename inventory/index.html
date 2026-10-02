@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inventory - Spicy Docs</title>
   <meta name="description" content="Items, warehouses, stock movements, purchase receipts, and recipes.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -95,10 +92,107 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Inventory</p>
         <h1>Inventory</h1>
-        <p class="lede">Items, warehouses, stock movements, purchase receipts, and recipes.</p>
+        <p class="lede">Receiving stock, moving it around, counting it, and what each of those does to your costs.</p>
+
+        <h2>How Spicy treats drinks and food differently</h2>
+        <p>This is the single most important thing to understand about Spicy's stock, and it explains a lot about the reports.</p>
+        <p><strong>Drinks are deducted when they are sold.</strong> A bottle leaves the shelf, one for one, and Spicy knows exactly which bottle. It reduces the count and costs the sale immediately.</p>
+        <p><strong>Food is not deducted when a dish is sold.</strong> A sold plate of jollof rice tells you one portion went out. It does not tell you how much rice, oil, tomato, or chicken went into it. Only the kitchen knows that, because they saw the actual pots.</p>
+        <p>So Spicy asks the kitchen to count what they used at the end of the day, and uses that count as the real cost of your food. What the recipes say <em>should</em> have been used is shown alongside as a comparison.</p>
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>If the kitchen does not count, your food cost reads zero.</strong> Spicy will warn you on the profit and loss statement when that happens rather than quietly showing you a good-looking number. The fix is to count — see <a href="../reports/">Reports</a>.</p>
         </div>
+
+        <h2>Warehouses</h2>
+        <p>Three, and they mean different things:</p>
+        <table>
+          <thead><tr><th>Warehouse</th><th>What lives there</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Store</strong></td><td>Deliveries land here before you move them to where they are used.</td></tr>
+            <tr><td><strong>Kitchen</strong></td><td>Your food ingredients. This is what you count at the end of the day.</td></tr>
+            <tr><td><strong>Bar</strong></td><td>Your drinks. This is what Spicy deducts from when a drink is sold.</td></tr>
+          </tbody>
+        </table>
+        <p>Manage them under <strong>Inventory → Warehouses</strong>. Each has a current quantity and cost per unit for every item in it.</p>
+
+        <h2>Receiving a delivery</h2>
+        <p>Go to <strong>Inventory → Purchase receipts</strong> and create one. Choose the supplier, the delivery note number, and add the items and what you paid per unit.</p>
+        <p>Submitting the receipt puts the stock into your <strong>Store</strong> and works out the cost per unit for you. If you buy by the crate, enter the crate quantity and price — Spicy converts using the conversion you set on the item.</p>
+        <p>A purchase receipt records goods arriving. It does not record the bill. When the invoice comes, create it against the receipt in <a href="../accounting/">Accounting</a>. The two are deliberately separate: goods can arrive weeks before you are billed.</p>
+        <div class="docs-note">
+          <p><strong>You cannot cancel a receipt once it has been invoiced.</strong> If the delivery was wrong, cancel the supplier invoice first, or file an adjustment. This stops you losing track of money you still owe.</p>
+        </div>
+
+        <h2>Buying at market</h2>
+        <p>For produce and staples you pay for on the spot, use <strong>Inventory → Stock entries</strong> with purpose <strong>Material Receipt</strong>. Same result for stock, but you pick the payment method you paid with — "Paid from" — and there is no supplier to owe.</p>
+
+        <h2>Moving stock to where it is used</h2>
+        <p>Go to <strong>Inventory → Stock entries</strong> with purpose <strong>Material Transfer</strong>. Move from the Store to the Kitchen or the Bar.</p>
+        <p>There is no price to enter on a transfer. Spicy moves the value at what that stock already cost you, which keeps your accounts straight.</p>
+        <p>You cannot transfer out more than you have, and you cannot cancel a transfer once stock has already been used from where it went. Transfer the remainder back, or file an adjustment.</p>
+
+        <h2>Counting</h2>
+        <p>Go to <strong>Inventory → Reconciliations</strong>. Pick a warehouse and a reason:</p>
+        <table>
+          <thead><tr><th>Reason</th><th>Use it for</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Opening Stock</strong></td><td>Seeding a brand new warehouse. Only works once, on a warehouse with no history.</td></tr>
+            <tr><td><strong>Adjustment</strong></td><td>Correcting a mistake, up or down.</td></tr>
+            <tr><td><strong>Consumption</strong></td><td>The end-of-day kitchen count of what you used. Food items, Kitchen warehouse.</td></tr>
+            <tr><td><strong>Waste / Damage</strong></td><td>Something spoiled, broke, or was over-prepared.</td></tr>
+          </tbody>
+        </table>
+        <p>Enter what is <em>left</em> for Consumption, and how much was <em>lost</em> for Waste. They work in opposite directions.</p>
+        <p>A consumption count cannot be higher than what the kitchen bin holds. If it is, your last count or a transfer went unrecorded.</p>
+
+        <h2>The daily kitchen count</h2>
+        <p>This is the routine that makes your food cost real. At the end of service:</p>
+        <ol>
+          <li>Go to <strong>Inventory → Reconciliations</strong>.</li>
+          <li>Warehouse: <strong>Kitchen</strong>. Reason: <strong>Consumption</strong>.</li>
+          <li>Enter what is left of each ingredient — rice, oil, chicken, and so on.</li>
+          <li>Add a second one for <strong>Waste / Damage</strong> if anything was thrown away.</li>
+          <li>Submit each.</li>
+        </ol>
+        <p>Spicy works out what you used, values it at what it cost you, and that becomes the day's food cost.</p>
+
+        <div class="docs-note">
+          <p><strong>Do this every single day.</strong> Skip it and the day's food cost shows as zero, with a warning on the profit and loss statement. Do it consistently and your food cost is one of the most useful numbers you have — you will see over-preparation and unrecorded waste show up as variances.</p>
+        </div>
+
+        <h2>How costs work out</h2>
+        <p>Spicy keeps a running average cost for every item in every warehouse.</p>
+        <ul>
+          <li>When stock <strong>arrives</strong>, the new cost is blended into the average. If you had 100 bottles at ₦200 and buy 24 more at ₦260, the average moves to reflect both.</li>
+          <li>When stock <strong>leaves</strong> — a drink sold, a transfer out — it is valued at the current average.</li>
+        </ul>
+        <p>You do not need to understand this to run it. You need to understand it when a figure surprises you: if you bought a drink much cheaper than usual, the average cost of everything in that bin changes.</p>
+
+        <h2>Recipes</h2>
+        <p>Manage recipes under <strong>Inventory → Recipes</strong>, or from the item itself. Each recipe lists what goes into one portion of a dish, in the ingredient's own unit.</p>
+        <p>Recipes give you the <strong>plate cost</strong> — what one portion should cost you at current prices. Use it to check your menu prices are sensible and to see which dishes are quietly losing money.</p>
+        <p>They also let Spicy tell you what you <em>should</em> have used against what you actually used. See <strong>Food usage</strong> under Inventory.</p>
+        <div class="docs-note">
+          <p><strong>A dish you sell with no recipe has no food cost.</strong> It will appear on the food usage report as having no recipe, so you can spot it. Add recipes for everything on your menu.</p>
+        </div>
+
+        <h2>Reports</h2>
+        <ul>
+          <li><strong>Stock balance</strong> — what you have, per item and warehouse, valued.</li>
+          <li><strong>Stock ledger</strong> — every movement, with what happened, when, and why. Filter it and export to CSV.</li>
+          <li><strong>Food usage</strong> — what the recipes say you should have used against what the kitchen counted, plus any dishes with no recipe.</li>
+        </ul>
+        <p>When something looks wrong, the <strong>stock ledger</strong> is the place to start. It shows every movement in order with the document that caused it.</p>
+
+        <h2>Things Spicy will not let you do</h2>
+        <ul>
+          <li>Sell a drink that is out of stock.</li>
+          <li>Take stock out below what open orders have already reserved.</li>
+          <li>Count consumption higher than you actually have.</li>
+          <li>Edit or delete a stock movement. Corrections are made with an adjusting entry, so the history stays intact.</li>
+          <li>Book stock into a warehouse with existing history as "Opening Stock".</li>
+        </ul>
+        <p>More in <a href="../troubleshooting/">Troubleshooting</a>.</p>
       </article>
     </div>
   </main>

@@ -1,8 +1,4 @@
 # robots.txt for spicy.akorede.dev
-#
-# The eleven docs pages under / are still placeholders and carry
-# meta robots noindex. They stay out of the sitemap until their content
-# lands; see the TODO comment in each page's <head>.
 
 User-agent: *
 Allow: /

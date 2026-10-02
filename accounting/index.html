@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
-  Docs page skeleton. Content lands in the article below; the shell, sidebar
-  and styles are shared with every docs page.
+  Documentation page. The shell, sidebar and styles are shared with every
+  other docs page.
 -->
 <html lang="en" dir="ltr">
 <head>
@@ -9,9 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Accounting - Spicy Docs</title>
   <meta name="description" content="Chart of accounts, payment modes, suppliers, and the general ledger.">
-  <meta name="robots" content="noindex">
-  <!-- TODO: remove the noindex above and add this page to sitemap.xml in the
-       same commit, once the content lands. -->
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -94,11 +91,84 @@
       </aside>
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Accounting</p>
-        <h1>Accounting</h1>
-        <p class="lede">Chart of accounts, payment modes, suppliers, and the general ledger.</p>
+        <h1>Accounting and payables</h1>
+        <p class="lede">Spicy writes proper double-entry bookkeeping as you trade, and tracks what you owe suppliers. You do not have to do bookkeeping — you have to make sure the accounts are set up right.</p>
+
+        <p>Manager or administrator only.</p>
+
+        <h2>What Spicy does for you</h2>
+        <p>Every time a cashier takes a payment, Spicy writes the accounting entry. Every time you refund, it writes the reversing entry. Every stock movement and shift close writes its own.</p>
+        <p>That means your books are up to date without anyone entering them, and they balance by construction — Spicy will not write an entry where the money does not add up. If something is missing, the sale is refused and you find out immediately, rather than discovering a gap weeks later.</p>
+
+        <h2>Chart of accounts</h2>
+        <p>Go to <strong>Accounting → Chart of accounts</strong>. This is the list of buckets your money is sorted into — Cash Account, Food Sales, Drinks Sales, Cost of Goods Sold, and so on.</p>
+        <p>The standard setup command already created a working set. You can add your own, but most restaurants run fine on the defaults. Only change something if you know why you are changing it.</p>
+        <p>Two things to be careful with:</p>
+        <ul>
+          <li>Do not rename or remove an account that is in use. Renaming is fine; removing is not.</li>
+          <li>An account can be frozen to stop anything posting to it, without deleting its history. Useful for closing a period.</li>
+        </ul>
+
+        <h2>Payment methods need accounts</h2>
+        <p>Each payment method must point at an account — Cash to Cash Account, transfers to your bank account. Without one, Spicy cannot take that payment.</p>
+        <p>This is set under <strong>Payments</strong> in the back office. See <a href="../setup/">Setup</a>.</p>
+
+        <h2>What a sale writes</h2>
+        <p>For transparency, a sale of ₦1,500 of food paid in cash writes four things:</p>
+        <table>
+          <thead><tr><th>Account</th><th>Debit</th><th>Credit</th></tr></thead>
+          <tbody>
+            <tr><td>Cash Account</td><td>1,500</td><td>—</td></tr>
+            <tr><td>Food Sales</td><td>—</td><td>1,500</td></tr>
+          </tbody>
+        </table>
+        <p>For drinks, it also records what the drinks cost you, so your profit is real rather than gross. For a mixed order, the food and drinks go to separate accounts, which is why every report can show you food and drinks apart.</p>
+        <p>If you gave change, only the amount you kept is recorded against cash. The change is not counted as money in.</p>
+        <p>If the total needed rounding, the rounding goes to its own account. Small, but it is why your ledger always ties to the till.</p>
+
+        <h2>Journal entries</h2>
+        <p>Go to <strong>Accounting → Journal entries</strong>. For anything the automatic entries do not cover — opening balances when you start using Spicy, accruals, corrections.</p>
+        <p>You write one line per account, with a debit or a credit. Debits must equal credits, and Spicy checks before saving. The left column of each entry is debit, the right is credit.</p>
+        <p>For opening balances, use the <strong>Opening Entry</strong> voucher type. You only need one per year, and Spicy asks for a note on each line so future you knows what it was.</p>
         <div class="docs-note">
-          <p><strong>This page is being written.</strong> The structure is in place; the content lands next. Until then, <a href="../docs/">start from the docs hub</a>.</p>
+          <p><strong>You cannot edit a journal entry once it is submitted.</strong> Cancel it and write a new one. The cancelled entry stays on file and a reversing entry is written, dated today. This is how accounting should work — corrections are visible, not hidden.</p>
         </div>
+
+        <h2>Suppliers</h2>
+        <p>Go to <strong>Accounting → Suppliers</strong>. Add each supplier you buy from, with contact details.</p>
+
+        <h3>Recording what was delivered</h3>
+        <p>When goods arrive, create a <a href="../inventory/">purchase receipt</a>. That puts the stock in your Store and records what you now owe, but no bill yet.</p>
+        <p>When the invoice comes, go to <strong>Accounting → Supplier invoices</strong> and create one, choosing the receipt it belongs to. Spicy copies the items and prices from the receipt and locks them — you cannot invoice for something you did not receive.</p>
+        <p>Add any extra charges, like delivery, as expense lines on the same invoice.</p>
+        <p>An invoice with only expenses and no goods is fine for a bill like "gas cylinder refill".</p>
+
+        <h3>Paying suppliers</h3>
+        <p>Go to <strong>Accounting → Supplier payments</strong>. Choose the supplier, the payment method, and how much you are paying. Spicy then asks which invoices it settles. It will not let you overpay an invoice or pay an invoice that belongs to someone else.</p>
+        <p>Each supplier shows an outstanding balance — what you still owe them.</p>
+
+        <div class="docs-note">
+          <p><strong>Do not cancel a receipt that has been invoiced.</strong> Spicy stops you, and that is deliberate. If the delivery was wrong, deal with the invoice first, or file an adjustment for the stock. It is there to stop you losing a liability you still owe.</p>
+        </div>
+
+        <h2>Reports</h2>
+        <ul>
+          <li><strong>General ledger</strong> — every entry, in date order, filterable by account. The full record of what happened to your money.</li>
+          <li><strong>Trial balance</strong> — what each account holds, and proof that everything balances.</li>
+          <li><strong>Profit and loss</strong> — the ledger summarised over a period.</li>
+        </ul>
+        <p>All three export to CSV. See <a href="../reports/">Reports</a> for the sales side.</p>
+
+        <h2>Fiscal year</h2>
+        <p>Every posting has to land inside a fiscal year. The setup command creates the current one. Before your year rolls over, create the next — otherwise no sale will post in January and your cashier will start getting errors.</p>
+        <p>Go to <strong>Accounting → Fiscal years</strong> and add next year's dates.</p>
+        <div class="docs-note">
+          <p><strong>Do this before the new year, not during.</strong> Years cannot overlap, so getting the dates wrong means editing the existing one. And a sale with no year to land in is refused outright.</p>
+        </div>
+
+        <h2>Cash variance</h2>
+        <p>When a shift closes short or over, Spicy writes the difference to the ledger on the drawer that actually held the money. A shortfall in the till hits cash; a shortfall in the transfer account hits that account, not your cash.</p>
+        <p>If a difference is large, closing needs a manager's approval and a written explanation. That is your theft-and-error control.</p>
       </article>
     </div>
   </main>
