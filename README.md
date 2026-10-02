@@ -2,7 +2,7 @@
 
 Source for the Spicy website: the landing page and the documentation.
 
-The site is published at [spicy.akorede.dev](https://spicy.akorede.dev). Spicy itself, the point of sale, lives in [sanusi-dev/spicy](https://github.com/sanusi-dev/spicy).
+The site is published at [spicy.akorede.dev](https://spicy.akorede.dev), a subdomain of `akorede.dev` that both sit on Netlify. Spicy itself, the point of sale, lives in [sanusi-dev/spicy](https://github.com/sanusi-dev/spicy).
 
 ## Run it locally
 

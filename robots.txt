@@ -1,0 +1,16 @@
+# robots.txt for spicy.akorede.dev
+#
+# The eleven docs pages under / are still placeholders and carry
+# meta robots noindex. They stay out of the sitemap until their content
+# lands; see the TODO comment in each page's <head>.
+
+User-agent: *
+Allow: /
+
+# Block the brand and exploration pages that are not part of the site.
+# They are ignored in .gitignore and never published, so this only covers
+# the case where one is ever copied into the publish directory.
+Disallow: /preview/
+Disallow: /tools/
+
+Sitemap: https://spicy.akorede.dev/sitemap.xml

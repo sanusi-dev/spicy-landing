@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for spicy.akorede.dev.
+
+  Only the two pages that carry real content are listed: the landing page
+  and the docs hub. The eleven placeholder docs pages carry meta robots
+  noindex until their content lands, so they are deliberately absent.
+  Add each page here in the same commit that removes its noindex.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://spicy.akorede.dev/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://spicy.akorede.dev/docs/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
