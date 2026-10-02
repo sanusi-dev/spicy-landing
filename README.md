@@ -18,6 +18,8 @@ The landing page is `index.html`, with styles in `assets/css/landing.css` and be
 
 Documentation is one folder per page (`introduction/`, `installation/`, `pos/`, and the rest). `docs/index.html` is the hub that links them. Every documentation page shares the same shell: `landing.css` and `docs.css` for the styles, `landing.js` for the theme toggle and reveals, and `docs.js` for the header search.
 
+`documentation/` holds the reference documentation for the application itself — installation, configuration, roles, the daily workflow, inventory, reporting, accounting, and the business rules the system enforces. Start at [`documentation/README.md`](documentation/README.md). It is plain Markdown, so it reads best on GitHub or in an editor.
+
 For a typo or a small correction, edit the file and open a pull request.
 
 ## License
