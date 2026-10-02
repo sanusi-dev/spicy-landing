@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------
 # Spicy landing page — what this repo tracks
 #
-# Only the files Netlify serves (landing page v2, the docs page, and their
-# assets), plus the README, DECISIONS.md and licence. Build tooling, brand
-# source material and exploration are kept out deliberately: a pushed commit
-# keeps its blobs forever, so narrowing this later never reclaims the space.
+# Only the files Netlify serves (landing page v2, the docs pages, and their
+# assets), plus the README and licence. Build tooling, brand source material
+# and exploration are kept out deliberately: a pushed commit keeps its blobs
+# forever, so narrowing this later never reclaims the space.
 #
 # NOTE ON NEGATIONS: to re-include a file you must ignore the *contents* of
 # its parent (`/dir/*`), never the parent itself (`/dir/`). Git cannot
@@ -57,6 +57,13 @@
 
 # --- Exploration output ----------------------------------------------------
 /preview/
+
+# --- Scratch notes ---------------------------------------------------------
+# Agent transcripts and session dumps, dropped in the root while working.
+*-session-transcript*
+*-session-transcript
+/session-transcript*
+.grok/
 
 # ---------------------------------------------------------------------------
 # Environment
