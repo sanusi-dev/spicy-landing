@@ -98,7 +98,15 @@
           entry.target.setAttribute('data-visible', 'true');
           observer.unobserve(entry.target);
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }, {
+        /* threshold 0, not a ratio: a docs article can be several thousand
+           pixels tall, and a viewport can never show 12% of it, so the
+           reveal would never fire and the page would stay invisible.
+           rootMargin pulls the trigger slightly above the fold so the fade
+           completes as the block arrives rather than after it. */
+        threshold: 0,
+        rootMargin: '0px 0px -8% 0px'
+      });
       reveals.forEach(function (el) { observer.observe(el); });
     }
   }

@@ -64,6 +64,10 @@
 }
 .docs-nav li a[aria-current="page"]::before { background: var(--chili); }
 
+/* The collapsed-nav button only exists on narrow screens, where the sidebar
+   sits above the article instead of beside it. */
+.docs-nav-toggle { display: none; }
+
 /* Article
    -------------------------------------------------------------------------- */
 .docs-article { min-width: 0; max-width: 74ch; }
@@ -274,6 +278,7 @@
   .docs-bar .theme-toggle { width: 40px; height: 40px; }
   .docs-search { max-width: none; }
   .docs-search input { height: 40px; padding-left: 2.15rem; }
+  .docs-nav-toggle { top: 64px; }
 }
 @media (max-width: 960px) {
   .docs-layout {
@@ -287,8 +292,50 @@
     padding-bottom: 1.4rem;
     border-bottom: 1px solid var(--line);
   }
-  .docs-nav { display: grid; gap: 0 1.5rem; }
+  .docs-nav { display: grid; gap: 0 1.5rem; padding-top: 1.15rem; }
   .docs-nav-title { grid-column: 1 / -1; }
+
+  /* Collapsed navigation. The sidebar sits above the article on narrow
+     screens, so it folds behind a button rather than pushing the page
+     down by several hundred pixels before any content appears. */
+  .docs-nav-toggle {
+    /* Sits in its own full-width row of .docs-layout rather than inside the
+       sidebar, so the sticky element has a parent tall enough to stick
+       within — a sticky child cannot escape its parent's box. */
+    grid-column: 1 / -1;
+    position: sticky;
+    /* The site header is sticky at top: 0, so sit directly beneath it.
+       64px is the header height on phones, 72px above that. */
+    top: 72px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .docs-nav-toggle > span { flex: 1; text-align: left; }
+  .docs-nav-toggle svg { flex: none; }
+  .docs-nav-toggle:hover { border-color: var(--chili); color: var(--chili); }
+  .docs-nav-toggle[aria-expanded="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .docs-nav-toggle[aria-expanded="true"]:hover { color: var(--paper); }
+  .docs-nav-toggle .docs-nav-chevron { transition: transform 0.22s var(--ease); }
+  .docs-nav-toggle[aria-expanded="true"] .docs-nav-chevron { transform: rotate(180deg); }
+
+  .docs-side[data-open="false"] .docs-nav { display: none; }
+  .docs-side[data-open="false"] { padding-bottom: 1.15rem; }
 }
 @media (min-width: 640px) and (max-width: 960px) {
   .docs-nav {

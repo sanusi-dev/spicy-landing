@@ -64,8 +64,13 @@
 
   <main id="content">
     <div class="wrap docs-layout">
-      <aside class="docs-side">
-        <nav class="docs-nav" aria-label="Docs">
+      <button type="button" class="docs-nav-toggle" id="docs-nav-toggle" aria-expanded="false" aria-controls="docs-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span>Documentation menu</span>
+        <svg class="docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <aside class="docs-side" data-open="false">
+        <nav class="docs-nav" id="docs-nav" aria-label="Docs">
           <p class="docs-nav-title"><a href="../docs/">Spicy docs</a></p>
           <p class="docs-nav-group">Getting started</p>
           <ul>
@@ -97,7 +102,7 @@
         <p>It runs on your own network. Nothing is sent to an outside service, and it keeps working when the internet is down. That means your sales figures, supplier details, and staff records stay on hardware you control.</p>
 
         <div class="docs-note">
-          <p><strong>Spicy suits a single restaurant.</strong> One location, one set of settings, one database. It is not built for chains or franchises.</p>
+          <p><strong>Spicy suits a single restaurant.</strong> One location, one set of settings, one database.</p>
         </div>
 
         <h2>What Spicy does</h2>
@@ -131,17 +136,6 @@
           <li>The manager produces that day's profit and loss.</li>
         </ol>
         <p>Steps 5 and 6 matter more than they look. Drink costs are known exactly because Spicy watched them sell. Food costs are only as accurate as the kitchen's count, which is why Spicy warns you when a count is missing rather than showing a flattering zero.</p>
-
-        <h2>What Spicy does not do</h2>
-        <p>Being clear about this up front:</p>
-        <ul>
-          <li><strong>No tax.</strong> Totals are the item prices added up and rounded to the nearest naira. There is no VAT or sales tax built in.</li>
-          <li><strong>No discounts or coupons.</strong> Everything sells at the menu price. To correct a mistake, cancel or return the order.</li>
-          <li><strong>No customer accounts.</strong> An order carries a customer's name as text. There is no stored customer record, no customer balance, and no loyalty points.</li>
-          <li><strong>No table management.</strong> Orders start by type, dine-in or takeaway, and guest count. There are no tables or floor plans.</li>
-          <li><strong>No multiple branches.</strong> One restaurant.</li>
-          <li><strong>No payroll.</strong> Staff cost is a figure you enter on the profit and loss statement yourself.</li>
-        </ul>
 
         <h2>Getting started</h2>
         <p>Two steps, in this order:</p>

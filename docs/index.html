@@ -77,8 +77,13 @@
 
   <main id="content">
     <div class="wrap docs-layout">
-      <aside class="docs-side">
-        <nav class="docs-nav" aria-label="Docs">
+      <button type="button" class="docs-nav-toggle" id="docs-nav-toggle" aria-expanded="false" aria-controls="docs-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span>Documentation menu</span>
+        <svg class="docs-nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <aside class="docs-side" data-open="false">
+        <nav class="docs-nav" id="docs-nav" aria-label="Docs">
           <p class="docs-nav-title"><a href="../docs/">Spicy docs</a></p>
           <p class="docs-nav-group">Getting started</p>
           <ul>
