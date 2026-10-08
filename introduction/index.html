@@ -97,33 +97,33 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Introduction</p>
         <h1>Spicy: Open Source Restaurant Management System</h1>
-        <p class="lede">Spicy is a restaurant management system. It handles the counter, the kitchen, the bar, your stock, your shifts, and your accounts, on one computer inside your restaurant.</p>
+        <p class="lede">Spicy is a restaurant management system. It handles the counter, the kitchen, the bar, your stock, your shifts, and your accounts. It runs on one computer inside your restaurant.</p>
 
-        <p>It runs on your own network. Nothing is sent to an outside service, and it keeps working when the internet is down. That means your sales figures, supplier details, and staff records stay on hardware you control.</p>
+        <p>Spicy runs on your own network. It sends nothing to an outside service, and it keeps working when the internet is down. Your sales figures, supplier details, and staff records stay on hardware you control.</p>
 
         <div class="docs-note">
-          <p><strong>Spicy suits a single restaurant.</strong> One location, one set of settings, one database.</p>
+          <p><strong>Spicy supports a single restaurant.</strong> It uses one location, one set of settings, and one database.</p>
         </div>
 
         <h2>What Spicy does</h2>
         <ul>
           <li><strong>Point of sale.</strong> Cashiers take orders and payments at the counter. Food prints to the kitchen, drinks print to the bar.</li>
-          <li><strong>Stock.</strong> Drinks are deducted automatically when they are sold. Food ingredients are counted by the kitchen at the end of the day.</li>
-          <li><strong>Shifts and cash.</strong> Open with a float, count the drawer at the end, and the system shows what it expected against what you counted.</li>
-          <li><strong>Accounting.</strong> Every sale writes balanced entries to a proper ledger, with food and drinks reported separately.</li>
-          <li><strong>Daily profit and loss.</strong> See your gross sales, what the food and drinks cost you, your expenses, and what you actually made.</li>
-          <li><strong>Suppliers.</strong> Record what you received, what you were billed, and what you still owe.</li>
-          <li><strong>Reports.</strong> Sales by day, item, staff member, service type, and hour. Ledger, trial balance, and stock reports.</li>
+          <li><strong>Stock.</strong> Spicy deducts drinks from stock automatically when the cashier sells them. At the end of the day, the kitchen counts food ingredients.</li>
+          <li><strong>Shifts and cash.</strong> The cashier opens a shift with a float. At the end, the cashier counts the drawer and Spicy shows what it expected against what the cashier counted.</li>
+          <li><strong>Accounting.</strong> Every sale writes balanced entries to a ledger. Spicy records food and drinks separately.</li>
+          <li><strong>Daily profit and loss.</strong> See your gross sales, your food and drink costs, your expenses, and your profit.</li>
+          <li><strong>Suppliers.</strong> Record what you received, what the supplier billed you, and what you still owe.</li>
+          <li><strong>Reports.</strong> See sales by day, item, staff member, service type, and hour. See the ledger, trial balance, and stock reports.</li>
         </ul>
 
         <h2>Who uses Spicy</h2>
-        <p>Spicy has three roles, and each person sees only what they need.</p>
+        <p>Spicy has three roles. Each person sees only what they need.</p>
         <ul>
-          <li><strong>Cashier</strong> takes orders, sends them to the kitchen, takes payment, and closes their shift. They see the POS and nothing else.</li>
-          <li><strong>Manager</strong> runs the back office: menu, stock, shifts, orders, accounts, and reports. They also cancel orders and process refunds.</li>
-          <li><strong>Administrator</strong> does everything a manager does, plus creating accounts and assigning roles.</li>
+          <li>The <strong>cashier</strong> takes orders, sends them to the kitchen, takes payment, and closes their shift. The cashier sees the POS and nothing else.</li>
+          <li>The <strong>manager</strong> runs the back office: menu, stock, shifts, orders, accounts, and reports. The manager also cancels orders and processes refunds.</li>
+          <li>The <strong>administrator</strong> does everything a manager does. The administrator also creates accounts and assigns roles.</li>
         </ul>
-        <p><a href="../setup/">Setup</a> covers creating accounts and assigning roles. <a href="../backoffice/">Back office</a> covers what a manager can reach.</p>
+        <p><a href="../setup/">Setup</a> explains how to create accounts and assign roles. <a href="../backoffice/">Back office</a> shows what a manager can access.</p>
 
         <h2>How Spicy works day to day</h2>
         <p>A normal day runs like this:</p>
@@ -132,20 +132,20 @@
           <li>Customers order. The cashier builds the order, sends it, and takes payment.</li>
           <li>Food prints to the kitchen. Drinks print to the bar.</li>
           <li>At closing time the cashier counts the drawer and compares it to what the system expected.</li>
-          <li>The kitchen counts how much rice, oil, and chicken it actually used.</li>
+          <li>The kitchen counts how much rice, oil, and chicken it used.</li>
           <li>The manager produces that day's profit and loss.</li>
         </ol>
-        <p>Steps 5 and 6 matter more than they look. Drink costs are known exactly because Spicy watched them sell. Food costs are only as accurate as the kitchen's count, which is why Spicy warns you when a count is missing rather than showing a flattering zero.</p>
+        <p>Steps 5 and 6 matter more than they look. Spicy records every drink sale, so drink costs are exact. Food costs are only as accurate as the kitchen's count. When a count is missing, Spicy warns you.</p>
 
         <h2>Getting started</h2>
-        <p>Two steps, in this order:</p>
+        <p>Do these two steps in this order:</p>
         <ol>
-          <li><a href="../installation/">Install Spicy</a> — get it running on the cashier's computer.</li>
-          <li><a href="../setup/">Set up your restaurant</a> — add your items, prices, payment methods, and stock.</li>
+          <li><a href="../installation/">Install Spicy</a> on the cashier's computer.</li>
+          <li><a href="../setup/">Set up your restaurant</a>. Add your items, prices, payment methods, and stock.</li>
         </ol>
 
         <div class="docs-note">
-          <p><strong>New here?</strong> Work through <a href="../installation/">Installation</a> and then <a href="../setup/">Setup</a> in order. Setup assumes Spicy is already running.</p>
+          <p><strong>New to Spicy?</strong> Work through <a href="../installation/">Installation</a> and then <a href="../setup/">Setup</a> in order. Setup assumes that Spicy is already running.</p>
         </div>
       </article>
     </div>

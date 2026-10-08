@@ -106,16 +106,16 @@
           </thead>
           <tbody>
             <tr><td><strong>A computer</strong></td><td>This becomes your till. It stays on during trading.</td></tr>
-            <tr><td><strong>Three thermal printers</strong></td><td>One for receipts, one for the kitchen, one for the bar. Kitchen and bar printers are on the network.</td></tr>
-            <tr><td><strong>PostgreSQL</strong></td><td>Holds all your data. Comes with Docker, which is the easiest way to run it.</td></tr>
-            <tr><td><strong>Python 3.14+</strong></td><td>Runs Spicy.</td></tr>
-            <tr><td><strong>Node.js and npm</strong></td><td>Builds the buttons and styling.</td></tr>
-            <tr><td><strong>Docker</strong></td><td>Runs PostgreSQL and Redis for you. Optional but recommended.</td></tr>
+            <tr><td><strong>Three thermal printers</strong></td><td>Use one printer for receipts, one for the kitchen, and one for the bar. The kitchen and bar printers are on the network.</td></tr>
+            <tr><td><strong>PostgreSQL</strong></td><td>PostgreSQL holds all your data. Docker is the easiest way to run it.</td></tr>
+            <tr><td><strong>Python 3.14+</strong></td><td>Python runs Spicy.</td></tr>
+            <tr><td><strong>Node.js and npm</strong></td><td>Node.js builds the buttons and styling.</td></tr>
+            <tr><td><strong>Docker</strong></td><td>Docker runs PostgreSQL and Redis for you. It is optional, but we recommend it.</td></tr>
           </tbody>
         </table>
 
         <div class="docs-note">
-          <p><strong>Use a wired connection for the till.</strong> The cashier's computer should be on Ethernet where possible. If the network drops mid-shift, the system stops accepting orders, and you do not want that on Wi-Fi.</p>
+          <p><strong>Use a wired connection for the till.</strong> Where possible, connect the cashier's computer with an Ethernet cable. If the network drops mid-shift, the system stops accepting orders. A cable is safer than Wi-Fi for this reason.</p>
         </div>
 
         <h2>Install</h2>
@@ -125,8 +125,14 @@
 cd spicy</code></pre>
 
         <h3>Step 2: Start the database</h3>
-        <p>This copies a sample settings file, starts PostgreSQL and Redis, creates your database tables, and installs the front end files.</p>
+        <p>This command does four things:</p>
         <pre><code>make init</code></pre>
+        <ul>
+          <li>It copies a sample settings file.</li>
+          <li>It starts PostgreSQL and Redis.</li>
+          <li>It creates your database tables.</li>
+          <li>It installs the front end files.</li>
+        </ul>
         <p>It may take a few minutes on the first run while everything downloads.</p>
 
         <h3>Step 3: Start Spicy</h3>
@@ -143,22 +149,22 @@ cd spicy</code></pre>
         <pre><code>make manage ARGS='seed_pos_setup'</code></pre>
 
         <div class="docs-note">
-          <p><strong>Delete the sample items before you trade.</strong> They are placeholders. Clear them out and add your own in <a href="../setup/">Setup</a>.</p>
+          <p><strong>Delete the sample items before you trade.</strong> They are placeholders. Delete them and add your own in <a href="../setup/">Setup</a>.</p>
         </div>
 
-        <h2>Check it worked</h2>
-        <p>Sign in at <a href="http://localhost:8000" target="_blank" rel="noreferrer">localhost:8000</a>. An administrator lands on the back office dashboard.</p>
-        <p>To confirm there are no problems, run:</p>
+        <h2>Check the installation</h2>
+        <p>Sign in at <a href="http://localhost:8000" target="_blank" rel="noreferrer">localhost:8000</a>. An administrator sees the back office dashboard.</p>
+        <p>To check for problems, run:</p>
         <pre><code>make manage ARGS='check'</code></pre>
         <p>A healthy install reports <code>System check identified no issues</code>.</p>
 
         <h2>Before you take real orders</h2>
-        <p>Three things to sort out first.</p>
+        <p>Do three things first.</p>
 
-        <h3>Turn off debug mode</h3>
+        <h3>Disable debug mode</h3>
         <p>Open the <code>.env</code> file and set:</p>
         <pre><code>DEBUG=False</code></pre>
-        <p>Debug mode is for development. Leaving it on lets anyone signed in as an administrator change your sales and stock figures directly, bypassing the safety checks. Do not trade with it on.</p>
+        <p>Debug mode is for development. If you leave debug mode on, anyone signed in as an administrator can change your sales and stock figures directly. These changes bypass the safety checks. Do not trade with debug mode on.</p>
 
         <h3>Set your own secret key</h3>
         <p>Run this to generate one:</p>
@@ -166,32 +172,32 @@ cd spicy</code></pre>
         <p>Paste the result into the <code>SECRET_KEY</code> line in <code>.env</code>. This key protects your staff logins. If you skip it, anyone who reads the public source can sign in as your staff.</p>
 
         <h3>Set your time zone</h3>
-        <p>Spicy uses your computer's clock to decide which trading day a sale belongs to. If you close at 3am, that sale still counts for the previous day. Make sure the computer's date, time, and time zone are correct — check the automatic time setting in your operating system.</p>
+        <p>Spicy uses your computer's clock to decide which trading day a sale belongs to. If you close at 3am, that sale still counts for the previous day. Make sure the computer's date, time, and time zone are accurate. Check the automatic time setting in your operating system.</p>
 
         <h2>Printing</h2>
-        <p>Spicy prints through a small helper on the same computer. It talks to your receipt printer directly, and to the kitchen and bar printers over the network.</p>
-        <p>Once it is running, add each printer in <a href="../setup/">Setup</a> under Production Units: its IP address, whether it prints receipts or tickets, its paper width, and whether it cuts the paper off after printing.</p>
+        <p>Spicy prints through a small helper on the same computer. The helper connects to your receipt printer directly and to the kitchen and bar printers over the network.</p>
+        <p>Once the helper is running, add each printer in <a href="../setup/">Setup</a> under Production Units. For each printer, enter its IP address, its paper width, and whether it prints receipts or tickets. Also set whether it cuts the paper off after printing.</p>
         <div class="docs-note">
-          <p><strong>A printer problem will not stop you selling.</strong> If a printer is unreachable, the sale still goes through and you get a warning. But the kitchen will not receive the food, so nothing gets cooked. Fix the printer before you trade.</p>
+          <p><strong>A printer problem will not stop you selling.</strong> If Spicy cannot reach a printer, the sale still completes and you get a warning. But the kitchen will not receive the food, so the kitchen will not cook the food. Fix the printer before you trade.</p>
         </div>
 
         <h2>Running it every day</h2>
-        <p>When you switch the till on in the morning:</p>
+        <p>Every morning, do these steps:</p>
         <ol>
           <li>Start Docker and the database: <code>make start-bg</code></li>
           <li>Start Spicy: <code>make dev</code></li>
           <li>Open the POS and open your shift</li>
         </ol>
-        <p>Leaving <code>make dev</code> running in a terminal window works, but it stops if you close that window or log out of the computer. For a permanent setup, ask whoever set it up to run Spicy as a service that starts automatically.</p>
+        <p>You can leave <code>make dev</code> running in a terminal window. But if you close that window, or sign out of the computer, Spicy stops. For a permanent installation, ask the person who installed Spicy to run Spicy as a service that starts automatically.</p>
 
         <h2>Backing up</h2>
         <p>From day one, take a backup every night:</p>
         <pre><code>make backup</code></pre>
-        <p>This saves your sales data and your item photos to the <code>backups</code> folder. Set it to run automatically after you close, and copy the files to another drive weekly. A backup sitting on the same computer does not help if that computer is stolen.</p>
-        <p>Run it once by hand now, before you have any real data, so you know it works and you can find the files.</p>
+        <p>This saves your sales data and your item photos to the <code>backups</code> folder. Set it to run automatically after closing time. Copy the files to another drive each week. A backup sitting on the same computer does not help if that computer is stolen.</p>
+        <p>Run it once manually now, before you have any real data. Then you know that it works, and you know where the files are.</p>
 
         <h2>Next</h2>
-        <p>Spicy is running but has none of your restaurant in it yet. Go to <a href="../setup/">Setup</a>.</p>
+        <p>Spicy is running, but it does not have your restaurant data yet. Continue with <a href="../setup/">Setup</a>.</p>
       </article>
     </div>
   </main>

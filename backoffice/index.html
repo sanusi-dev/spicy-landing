@@ -97,7 +97,7 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Back office</p>
         <h1>Back office</h1>
-        <p class="lede">Everything a manager or administrator can reach: the setup screens, orders, shifts, staff, and who is allowed to do what.</p>
+        <p class="lede">Everything a manager or administrator can reach: the setup screens, orders, shifts, staff, and who can do what.</p>
 
         <h2>Who can see what</h2>
         <p>Spicy has three roles, and each person sees only what their job needs.</p>
@@ -118,24 +118,24 @@
           </tbody>
         </table>
 
-        <p>Signing in takes each person to the right place: cashiers land on the POS, managers and administrators on the dashboard.</p>
+        <p>Signing in takes each person to the right place: cashiers land on the POS, and managers and administrators land on the dashboard.</p>
 
         <div class="docs-note">
-          <p><strong>If someone reaches a page they should not, they get a clear error, not a blank screen.</strong> Being signed out sends them to sign in. Being signed in without the right role gives them a "no permission" message. Nothing is hidden-only — the checks are real.</p>
+          <p><strong>If someone reaches a page they should not, they get a clear error.</strong> When Spicy signs them out, it sends them to sign in. A user without the right role gets a "no permission" message. Spicy checks permissions on every page.</p>
         </div>
 
         <h2>Staff accounts</h2>
-        <p>Go to <strong>Settings → User roles</strong>. Administrators only.</p>
+        <p>Go to <strong>Settings → User roles</strong>. This section is for administrators.</p>
         <ul>
           <li><strong>Add user</strong> — create a login with a username and password.</li>
           <li><strong>Assign role</strong> — Cashier, Manager, or Administrator.</li>
-          <li><strong>Remove role</strong> — takes the role away. The person sees a waiting page until reassigned.</li>
+          <li><strong>Remove role</strong> — takes the role away. The person sees a waiting page until you assign a role again.</li>
           <li><strong>Deactivate</strong> — disables the login without deleting the account.</li>
         </ul>
         <p>Give every staff member their own login. If two people share one, your sales by staff member are meaningless, and you cannot tell who closed a shift.</p>
 
         <h3>When someone leaves</h3>
-        <p><strong>Deactivate, do not delete.</strong> Their name stays on every order and shift they worked. When you come back to a strange figure in six months, that name is the difference between a five-minute check and a mystery.</p>
+        <p><strong>Deactivate the account. Do not delete it.</strong> Their name stays on every order and shift they worked. When you look at a strange figure in six months, that name is the difference between a five-minute check and a mystery.</p>
 
         <h3>Passwords</h3>
         <p>Spicy checks new passwords against a minimum length, common passwords, all numbers, and similarity to the username. There is no password reset flow, so if someone forgets theirs, an administrator creates them a new login.</p>
@@ -144,46 +144,46 @@
         </div>
 
         <h2>Orders</h2>
-        <p>Go to <strong>Orders → Order register</strong>. Every order, filterable by status, type, and date, with search.</p>
-        <p>Open any order to see its lines, payments, tickets, and the full history of what happened to it — every change, with who did it and when.</p>
+        <p>Go to <strong>Orders → Order register</strong>. This page lists every order, with filters for status, type, and date, and a search box.</p>
+        <p>Open any order to see its lines, payments, and tickets. The full history shows every change, with who did it and when.</p>
         <ul>
-          <li><strong>Cancel</strong> — for a sent order that was not paid for. Requires a reason, and the kitchen gets a cancellation ticket.</li>
-          <li><strong>Return</strong> — for a paid order. See below.</li>
-          <li><strong>Delete</strong> — only for a draft that was never sent.</li>
+          <li><strong>Cancel</strong> — use it for a sent order that no one paid for. Cancel requires a reason, and the kitchen gets a cancellation ticket.</li>
+          <li><strong>Return</strong> — use it for a paid order. See below.</li>
+          <li><strong>Delete</strong> — use it only for a draft that you never sent.</li>
         </ul>
-        <p><strong>Kitchen &amp; bar tickets</strong> shows every ticket ever printed, with its print status, and lets a manager retry a failed print or reprint one.</p>
+        <p><strong>Kitchen &amp; bar tickets</strong> lists every ticket, with its print status. A manager can retry a failed print or reprint one from here.</p>
 
         <h2>Returns and refunds</h2>
         <p>A manager can return a paid order from the order register.</p>
         <ol>
           <li>Open the order and choose <strong>Return</strong>. Spicy creates a return with the same items, in reverse.</li>
           <li>Reduce or remove any line. Only what you leave gets refunded.</li>
-          <li>For a drink that has already been poured away or broken, tick <strong>Not restockable</strong>. It will not go back on the shelf — it is recorded as a loss instead, so the cost shows up as wastage rather than disappearing.</li>
+          <li>If you already poured the drink, or broke it, tick <strong>Not restockable</strong>. Spicy records it as a loss, so the cost appears as wastage.</li>
           <li>Submit the return.</li>
         </ol>
-        <p>Drinks you are putting back are returned at the cost the original sale used, even if prices have moved since. Your stock and your accounts stay consistent.</p>
-        <p>If a customer brings back a drink you did not sell, process the return as normal and note what happened. Spicy handles it correctly either way — it simply has no way of knowing it was not your stock.</p>
+        <p>Spicy values a returned drink at the cost the original sale used, even if the price changed since. Your stock and your accounts stay consistent.</p>
+        <p>If a customer brings back a drink you did not sell, process the return as normal and note what happened. Spicy cannot tell that the drink was not your stock, so it treats the return the same way.</p>
 
         <div class="docs-note">
-          <p><strong>A paid order cannot be cancelled, only returned.</strong> That is deliberate — there is no path that erases a completed sale. Corrections go on the record where you can see them.</p>
+          <p><strong>A paid order cannot be cancelled, only returned.</strong> That is deliberate. There is no path that deletes a completed sale. Corrections go on the record where you can see them.</p>
         </div>
 
         <h2>Shifts</h2>
-        <p>Go to <strong>Shifts</strong>. Opening and closing entries are listed here with their totals, and the POS close is where they normally happen.</p>
-        <p>Each close shows the frozen figures for that shift: number of bills, items sold, net total, and any refunds. Useful when a cashier and a manager remember a shift's take differently.</p>
+        <p>Go to <strong>Shifts</strong>. This page lists the opening and closing entries with their totals. Shift closes normally happen on the POS.</p>
+        <p>Each close shows the frozen figures for that shift: number of bills, items sold, net total, and any refunds. This is useful when a cashier and a manager remember a shift's take differently.</p>
 
         <h2>The dashboard</h2>
-        <p>Where managers land after signing in. It is a navigation page for the back office — every section in one place.</p>
+        <p>This is where managers land after signing in. It is a navigation page for the back office — every section in one place.</p>
 
         <h2>Settings</h2>
         <p><strong>Restaurant settings</strong>, <strong>User roles</strong>, and <strong>Production units</strong> are all under Settings. See <a href="../setup/">Setup</a> for what each one does.</p>
 
         <h2>Restrictions worth knowing</h2>
         <ul>
-          <li>A manager can edit and delete items, warehouses, recipes, and prices. There is no separate tier for master data — if you want that restricted to administrators, ask and it can be tightened.</li>
+          <li>A manager can edit and delete items, warehouses, recipes, and prices. There is no separate tier for master data. Ask if you want to restrict these actions to administrators.</li>
           <li>Cashiers can record cash-outs during service but only a manager can cancel one.</li>
-          <li>A large cash variance cannot be closed without a manager signing it off.</li>
-          <li>An administrator cannot have their role removed while another administrator is needed to replace them — demote first.</li>
+          <li>Spicy will not close a shift with a large cash variance until a manager signs it off.</li>
+          <li>You cannot remove the role from an administrator. Demote them to Manager first.</li>
         </ul>
       </article>
     </div>

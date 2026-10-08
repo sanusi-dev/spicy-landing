@@ -103,64 +103,64 @@
 
         <h2>Menus</h2>
         <p>Go to <strong>Menu → Menus</strong>. A menu is the list of items your cashier sees, with their prices.</p>
-        <p>You can have more than one — a main menu, a lunch list, a drinks-only list for the bar. Set which one is live under <strong>Settings → Restaurant settings</strong>, on <strong>Active menu</strong>. The POS only ever shows the active one.</p>
-        <p>Turning a menu off hides everything on it from the POS without deleting any prices. Useful for a seasonal menu.</p>
+        <p>You can have more than one — a main menu, a lunch list, a drinks-only list for the bar. Choose which one is active under <strong>Settings → Restaurant settings</strong>, on <strong>Active menu</strong>. The POS only shows the active menu.</p>
+        <p>Disabling a menu hides all its items from the POS without deleting any prices. Useful for a seasonal menu.</p>
 
         <h2>Menu items and prices</h2>
         <p>Go to <strong>Menu → Menu items</strong>. Each row links a dish or drink to your menu at a price.</p>
         <ul>
           <li><strong>Rate</strong> — what the customer pays. Leave it blank and Spicy fills it from what you last paid for the item, as a starting point.</li>
           <li><strong>Special dish</strong> — puts the item under a quick filter on the POS for featured dishes.</li>
-          <li><strong>Disabled</strong> — takes the item off the POS right away, keeping its price in the database.</li>
+          <li><strong>Disabled</strong> — hides the item from the POS right away and keeps its price in the database.</li>
         </ul>
 
         <div class="docs-note">
-          <p><strong>Use Disabled rather than deleting.</strong> Running out of a dish or a drink is normal. Disable it, sell it again tomorrow, and you have not lost your price or your history.</p>
+          <p><strong>Disable an item when you run out.</strong> Running out of a dish or a drink is normal. Disable it, and put it back on sale when you have stock again. Your price and your history stay.</p>
         </div>
 
-        <p>A price change affects new orders only. Orders already taken keep the price they were rung up at, so yesterday's sales figures never change retroactively.</p>
+        <p>A price change affects new orders only. Orders already taken keep the price from when the cashier took them, so yesterday's sales figures never change.</p>
 
         <h2>Sizes</h2>
-        <p>For a dish sold in sizes — quarter, half, full chicken:</p>
+        <p>For a dish you sell in sizes — quarter, half, full chicken:</p>
         <ol>
-          <li>Create each size as its own item under <strong>Inventory → Items</strong>. Tick <strong>Sell this item</strong> and leave stock tracking off, exactly as you would for a dish.</li>
+          <li>Create each size as its own item under <strong>Inventory → Items</strong>. Tick <strong>Sell this item</strong> and do not tick <strong>Track stock levels</strong>, exactly as for a dish.</li>
           <li>On the parent dish, tick <strong>Use variants</strong>. The parent becomes a template and stops being sellable itself.</li>
           <li>Go to <strong>Menu → Variants</strong> and link the parent to each size.</li>
           <li>Add each size to your menu at its own price.</li>
         </ol>
-        <p>On the POS, the parent shows as one tile with a price range — "₦1,200 – ₦3,500". Your cashier taps it and picks the size. The size joins the order as its own line at its own price.</p>
+        <p>On the POS, the parent appears as one tile with a price range — "₦1,200 – ₦3,500". Your cashier taps it and picks the size. The size joins the order as its own line at its own price.</p>
 
         <h2>Add-ons</h2>
         <p>For extras like "extra cheese" or "extra shot":</p>
         <ol>
-          <li>Create the extra as its own item, sellable, priced.</li>
+          <li>Create the extra as its own item. Make it sellable and give it a price.</li>
           <li>Add it to your menu at its price.</li>
           <li>Go to <strong>Menu → Add-ons</strong> and link it to the dish it belongs to.</li>
         </ol>
-        <p>When the cashier picks it, the extra appears on the bill as its own line at its own price. Jollof rice at ₦2,000 plus extra plantain at ₦500 shows as two lines totalling ₦2,500.</p>
+        <p>When the cashier picks it, the extra appears on the bill as its own line at its own price. Jollof rice at ₦2,000 plus extra plantain at ₦500 appears as two lines totalling ₦2,500.</p>
 
         <div class="docs-note">
-          <p><strong>Add-ons and sizes are separate items with separate prices.</strong> They are not "modifiers" that adjust the parent's price. An add-on always adds its full price on top.</p>
+          <p><strong>Add-ons and sizes are separate items with separate prices.</strong> An add-on always adds its full price on top of the parent's price.</p>
         </div>
 
         <h2>Changing prices</h2>
-        <p>Prices are edited on the menu item, not on the inventory item — the same dish can cost different amounts on different menus.</p>
-        <p>To change prices across a whole menu at once, there is no bulk edit. Work down the list of menu items. If you have many prices to change, a quick pattern is to open the item, change the rate, and work through the list.</p>
+        <p>You edit prices on the menu item. The same dish can cost different amounts on different menus.</p>
+        <p>There is no bulk edit for a whole menu. If you have many prices to change, open each menu item, change the rate, and save it.</p>
 
-        <h2>Removing something properly</h2>
+        <h2>Deleting something properly</h2>
         <ul>
-          <li><strong>Temporarily unavailable</strong> — tick <strong>Disabled</strong> on the menu item. Back on sale next week with the price intact.</li>
-          <li><strong>Permanly off the menu</strong> — delete the menu item. The underlying item stays in the system, so your sales history is untouched.</li>
-          <li><strong>Never delete the underlying item</strong> if it has been sold. It holds your history and any stock count.</li>
+          <li><strong>Temporarily unavailable</strong> — tick <strong>Disabled</strong> on the menu item. You can put it back on sale later with the price intact.</li>
+          <li><strong>Permanently off the menu</strong> — delete the menu item. The underlying item stays in the system, so your sales history stays intact.</li>
+          <li><strong>Never delete the underlying item</strong> if you sold it. It holds your history and any stock count.</li>
         </ul>
 
         <h2>Item images</h2>
-        <p>Add a photo on the item and it shows on the POS tile, making it faster for your cashier to find things. Without one, Spicy shows the item's initials instead.</p>
-        <p>Photos are optional. For a large menu, prioritise the items you take most orders for.</p>
+        <p>Add a photo on the item and it appears on the POS tile. Your cashier can find the item faster. Without one, Spicy shows the item's initials instead.</p>
+        <p>Photos are optional. For a large menu, add photos to the items with the most orders.</p>
 
         <h2>Check your prices against cost</h2>
         <p>Every dish with a <a href="../inventory/">recipe</a> shows a plate cost — what one portion should cost at current prices. Check it against your selling price.</p>
-        <p>A dish selling well below its plate cost is working you every time you sell it. This is often invisible until you look.</p>
+        <p>If a dish sells well below its plate cost, you lose money every time you sell it. You often do not see this until you check.</p>
       </article>
     </div>
   </main>
