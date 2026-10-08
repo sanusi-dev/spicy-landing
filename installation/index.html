@@ -97,7 +97,9 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Installation</p>
         <h1>Installation</h1>
-        <p class="lede">Get Spicy running on the computer at your counter. This should take about 20 minutes.</p>
+        <p class="lede">Get Spicy running on the server. This should take about 20 minutes.</p>
+
+        <p>Spicy runs as a server. You can run it on the computer at your counter, or on a cloud server. Run the steps below on that server. When the server is in the cloud, each till needs an internet connection.</p>
 
         <h2>What you need</h2>
         <table>
@@ -172,7 +174,7 @@ cd spicy</code></pre>
         <p>Paste the result into the <code>SECRET_KEY</code> line in <code>.env</code>. This key protects your staff logins. If you skip it, anyone who reads the public source can sign in as your staff.</p>
 
         <h3>Set your time zone</h3>
-        <p>Spicy uses your computer's clock to decide which trading day a sale belongs to. If you close at 3am, that sale still counts for the previous day. Make sure the computer's date, time, and time zone are accurate. Check the automatic time setting in your operating system.</p>
+        <p>Spicy uses the server's clock to decide which trading day a sale belongs to. If you close at 3am, that sale still counts for the previous day. Make sure the server's date, time, and time zone are accurate. Check the automatic time setting on the server.</p>
 
         <h2>Printing</h2>
         <p>Spicy prints through a small helper on the same computer. The helper connects to your receipt printer directly and to the kitchen and bar printers over the network.</p>
@@ -188,7 +190,7 @@ cd spicy</code></pre>
           <li>Start Spicy: <code>make dev</code></li>
           <li>Open the POS and open your shift</li>
         </ol>
-        <p>You can leave <code>make dev</code> running in a terminal window. But if you close that window, or sign out of the computer, Spicy stops. For a permanent installation, ask the person who installed Spicy to run Spicy as a service that starts automatically.</p>
+        <p>You can leave <code>make dev</code> running in a terminal window. But if you close that window, or sign out of the server, Spicy stops. For a permanent installation, ask the person who installed Spicy to run Spicy as a service that starts automatically.</p>
 
         <h2>Backing up</h2>
         <p>From day one, take a backup every night:</p>

@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Introduction - Spicy Docs</title>
-  <meta name="description" content="What Spicy is, what it runs on, and how the pieces fit together.">
+  <meta name="description" content="What Spicy is, where it runs, and how the pieces fit together.">
 
   <meta name="theme-color" content="#f3f6f3">
   <script>
@@ -97,9 +97,17 @@
       <article class="docs-article reveal" data-visible="false">
         <p class="docs-crumb"><a href="../docs/">Docs</a> / Introduction</p>
         <h1>Spicy: Open Source Restaurant Management System</h1>
-        <p class="lede">Spicy is a restaurant management system. It handles the counter, the kitchen, the bar, your stock, your shifts, and your accounts. It runs on one computer inside your restaurant.</p>
+        <p class="lede">Spicy is a restaurant management system. It handles the counter, the kitchen, the bar, your stock, your shifts, and your accounts. You can run it on a computer in your restaurant, or on a cloud server.</p>
 
-        <p>Spicy runs on your own network. It sends nothing to an outside service, and it keeps working when the internet is down. Your sales figures, supplier details, and staff records stay on hardware you control.</p>
+        <h2>Where Spicy runs</h2>
+        <p>Spicy is a server application. The server stores your data and does the work. Tills and back-office computers connect to it through a browser.</p>
+        <p>You can put the server in one of two places:</p>
+        <ul>
+          <li><strong>Locally.</strong> The server runs on a computer in your restaurant. The tills reach it over your local network. Spicy needs no internet connection, and trading continues during an internet outage.</li>
+          <li><strong>In the cloud.</strong> The server runs at a hosting provider. Each till reaches it over the internet, so trading stops when the internet connection fails.</li>
+        </ul>
+        <p>Spicy has no offline mode. A till that cannot reach the server cannot take orders.</p>
+        <p>Your sales figures, supplier details, and staff records stay on your server.</p>
 
         <div class="docs-note">
           <p><strong>Spicy supports a single restaurant.</strong> It uses one location, one set of settings, and one database.</p>
@@ -140,7 +148,7 @@
         <h2>Getting started</h2>
         <p>Do these two steps in this order:</p>
         <ol>
-          <li><a href="../installation/">Install Spicy</a> on the cashier's computer.</li>
+          <li><a href="../installation/">Install Spicy</a> on your server, locally or in the cloud.</li>
           <li><a href="../setup/">Set up your restaurant</a>. Add your items, prices, payment methods, and stock.</li>
         </ol>
 
